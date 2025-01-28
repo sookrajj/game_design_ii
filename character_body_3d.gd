@@ -12,6 +12,7 @@ var first_person = true
 const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0
+var gravity = true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -33,8 +34,10 @@ func _physics_process(delta: float) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() && gravity:
 		velocity += get_gravity() * delta
+	if not is_on_floor() && !gravity:
+		velocity += -get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -57,8 +60,13 @@ func _physics_process(delta: float) -> void:
 		speed = 5.0
 	
 	if Input.is_action_just_pressed("gravity"):
-		print(self.get_gravity())
-		#(0, -9.8, 0)
+		gravity = false
+		#print(self.gravity)
+		#self.gravity = Vector3(0, -1, 0)
+		##(0, -9.8, 0)
+	if Input.is_action_just_released("gravity"):
+		gravity = true
+		#self.gravity = Vector3(0, -9.8, 0)
 
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = headbob(t_bob)
