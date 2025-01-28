@@ -51,11 +51,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
-	#while Input.is_action_pressed("sprint"):
-		#speed = 100.0
-	#if Input.is_action_just_released("sprint"):
-		#speed = 5.0
+	if Input.is_action_pressed("sprint"):
+		speed = 100.0
+	if Input.is_action_just_released("sprint"):
+		speed = 5.0
 	
+	if Input.is_action_just_pressed("gravity"):
+		print(self.get_gravity())
+		#(0, -9.8, 0)
 
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = headbob(t_bob)
