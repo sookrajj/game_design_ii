@@ -5,7 +5,7 @@ const walk_speed = 5.0
 const sprint_speed = 100.0
 const dash = 500.0
 var speed = walk_speed
-const JUMP_VELOCITY = 7.5
+const JUMP_VELOCITY = 20
 
 
 const CAM_SENSITIVITY = 0.03
@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		speed = sprint_speed
-		FOV_change = 2.0
+		FOV_change = 4.0
 	if Input.is_action_just_released("sprint"):
 		speed = walk_speed
 		FOV_change = 1.0
