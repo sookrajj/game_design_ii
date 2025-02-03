@@ -9,7 +9,7 @@ material = SubResource("StandardMaterial3D_msuf5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfvlk"]
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_hkd6f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

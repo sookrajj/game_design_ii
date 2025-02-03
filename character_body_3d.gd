@@ -21,6 +21,8 @@ var first_person = true
 const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0
+
+var inertia = Vector3.ZERO
 var gravity = true
 
 func _ready() -> void:
@@ -98,9 +100,17 @@ func _physics_process(delta: float) -> void:
 	
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = headbob(t_bob)
+	
+	velocity += inertia
+	inertia = inertia.move_toward(Vector3.ZERO, delta * 1000.0)
 
 	move_and_slide()
 	#camera.position += headbob(delta)
+
+
+func take_damage(dmg):
+	# TODO
+	OS.alert("You suck!")
 
 
 func headbob(time):
@@ -108,6 +118,7 @@ func headbob(time):
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	return pos
+
 
 func toggle_camera_parent():
 	var parent = "Head"

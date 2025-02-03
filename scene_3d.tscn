@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://tvktusewixty"]
+[gd_scene load_steps=23 format=3 uid="uid://tvktusewixty"]
 
 [ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="1_f3702"]
 [ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_x4gd3"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bm0hc72mjgv5o" path="res://Assets/Textures/Concrete042A_1K-JPG/Concrete042A_1K-JPG_NormalGL.jpg" id="10_lep85"]
 [ext_resource type="Texture2D" uid="uid://drqj1a17p38wy" path="res://Assets/Textures/Plaster001_1K-JPG/Plaster001_1K-JPG_NormalGL.jpg" id="11_dssuo"]
 [ext_resource type="Texture2D" uid="uid://ci7kn6qnvh4wm" path="res://Assets/Textures/Rock051_1K-JPG/Rock051_1K-JPG_NormalGL.jpg" id="12_nsd2j"]
+[ext_resource type="PackedScene" uid="uid://bkwtw1rab5h40" path="res://enemy_3d.tscn" id="14_ky1tp"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fdp30"]
 panorama = ExtResource("1_x4gd3")
@@ -40,6 +41,9 @@ albedo_color = Color(0.11, 0.5105, 1, 1)
 script = ExtResource("4_2mtxx")
 mode = 0
 textures = [[ExtResource("5_eeyse"), ExtResource("6_xbpuj"), ExtResource("7_kmrsl"), ExtResource("8_ru4ig")], [ExtResource("9_rg77r"), ExtResource("10_lep85"), ExtResource("11_dssuo"), ExtResource("12_nsd2j")]]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rwrqh"]
+agent_height = 2.0
 
 [node name="scene_3d" type="Node3D"]
 
@@ -205,3 +209,36 @@ shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
+
+[node name="Enemy3D" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2965, 5.87166, -43.9636)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_rwrqh")
+
+[node name="Enemy3D2" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.2916, 1.89341, -14.3931)
+
+[node name="Enemy3D3" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3373, 5.43037, -199.512)
+
+[node name="Enemy3D4" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1057, 1.76418, 67.3173)
+
+[node name="Enemy3D5" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.113, 1.18632, -0.58278)
+
+[node name="Enemy3D6" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.477, 1.21126, 1.86415)
+
+[node name="Enemy3D7" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.994, 1.38663, -2.46008)
+
+[node name="Enemy3D8" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.588, 1.30694, 1.19326)
+
+[node name="Enemy3D9" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.449, 1.30072, -0.992502)
+
+[node name="Enemy3D10" parent="." instance=ExtResource("14_ky1tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.71, 1.20372, 0.0337589)
