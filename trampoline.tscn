@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg2sy0m7sk0cq"]
+
+[ext_resource type="Script" path="res://trampoline.gd" id="1_swtir"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3s1k4"]
+size = Vector3(3.39783, 0.127441, 2.5329)
+
+[node name="Trampoline" type="Node3D" groups=["trampolines"]]
+script = ExtResource("1_swtir")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.15987, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47294, 0, 1.02172)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.484175, 0, 1.51876)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47401, 0, 1.53041)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47902, 0, 1.11109)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21455, 0, 0.0611581)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53434, 0, -0.949008)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492529, 0, -1.60268)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.525401, 0, -1.60268)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53368, 0, -0.985398)
+
+[node name="bouncy" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0445862, 0.453477, -0.0318527)
+size = Vector3(3.64691, 0.074707, 2.28252)
+
+[node name="bounce" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bounce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003479, 0.48228, 0.0943909)
+shape = SubResource("BoxShape3D_3s1k4")

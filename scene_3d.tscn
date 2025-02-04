@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://tvktusewixty"]
+[gd_scene load_steps=25 format=3 uid="uid://tvktusewixty"]
 
 [ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="1_f3702"]
+[ext_resource type="PackedScene" uid="uid://csj5a3ubcnxaa" path="res://player_hud_3d.tscn" id="1_fh54x"]
 [ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_x4gd3"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_42g1h"]
 [ext_resource type="Resource" path="res://Assets/Terrains/scene_3d/data.hterrain" id="3_qoygp"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://drqj1a17p38wy" path="res://Assets/Textures/Plaster001_1K-JPG/Plaster001_1K-JPG_NormalGL.jpg" id="11_dssuo"]
 [ext_resource type="Texture2D" uid="uid://ci7kn6qnvh4wm" path="res://Assets/Textures/Rock051_1K-JPG/Rock051_1K-JPG_NormalGL.jpg" id="12_nsd2j"]
 [ext_resource type="PackedScene" uid="uid://bkwtw1rab5h40" path="res://enemy_3d.tscn" id="14_ky1tp"]
+[ext_resource type="PackedScene" uid="uid://cg2sy0m7sk0cq" path="res://trampoline.tscn" id="16_s3num"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fdp30"]
 panorama = ExtResource("1_x4gd3")
@@ -46,6 +48,8 @@ textures = [[ExtResource("5_eeyse"), ExtResource("6_xbpuj"), ExtResource("7_kmrs
 agent_height = 2.0
 
 [node name="scene_3d" type="Node3D"]
+
+[node name="PlayerHud3d" parent="." instance=ExtResource("1_fh54x")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qvt4s")
@@ -242,3 +246,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.449, 1.30072, -0.992502)
 
 [node name="Enemy3D10" parent="." instance=ExtResource("14_ky1tp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.71, 1.20372, 0.0337589)
+
+[node name="Trampoline" parent="." instance=ExtResource("16_s3num")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2398, 0.00776339, -37.3309)
+
+[node name="Trampoline2" parent="." instance=ExtResource("16_s3num")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.7983, 0.078986, -7.85604)

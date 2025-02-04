@@ -5,7 +5,7 @@ const walk_speed = 5.0
 const sprint_speed = 100.0
 const dash = 500.0
 var speed = walk_speed
-const JUMP_VELOCITY = 20
+const JUMP_VELOCITY = 7.5
 
 
 const CAM_SENSITIVITY = 0.03
@@ -23,6 +23,11 @@ const BOB_AMP = 0.08
 var t_bob = 0
 
 var inertia = Vector3.ZERO
+var MAX_HEALTH = 50
+var health = MAX_HEALTH
+var damage_lock = 0.0
+
+@onready var hud = get_tree().get_first_node_in_group("Hud")
 var gravity = true
 
 func _ready() -> void:
@@ -103,14 +108,34 @@ func _physics_process(delta: float) -> void:
 	
 	velocity += inertia
 	inertia = inertia.move_toward(Vector3.ZERO, delta * 1000.0)
+	damage_lock = max(damage_lock-delta, 0.0)
+	
+	for enemy in get_tree().get_nodes_in_group("Enemy"):
+		if $Feet.overlaps_area(enemy.dmg_area):
+			enemy.take_damage(0)
+	
+	
+	hud.healthbar.max_value = MAX_HEALTH
+	hud.healthbar.value = int(health)
+	
+	for tramp in get_tree().get_nodes_in_group("trampolines"):
+		if $Feet.overlaps_area(tramp.bounce):
+			velocity *= Vector3(0, 1.1, 0)
 
 	move_and_slide()
 	#camera.position += headbob(delta)
 
 
 func take_damage(dmg):
-	# TODO
-	OS.alert("You suck!")
+	if damage_lock == 0.0:
+		damage_lock = 0.5
+		health -= dmg
+		if health <= 0:
+			await get_tree().create_timer(0.25).timeout
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			OS.alert("You Died!")
+			get_tree().reload_current_scene()
+	
 
 
 func headbob(time):

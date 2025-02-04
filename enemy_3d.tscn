@@ -18,6 +18,7 @@ radius = 8.0
 radius = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gc1u6"]
+radius = 0.694872
 
 [node name="Enemy3D" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_50168")
@@ -36,13 +37,14 @@ shape = SubResource("CapsuleShape3D_881nf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
 shape = SubResource("CylinderShape3D_j6arw")
 
-[node name="Attack" type="Area3D" parent="." groups=["Enemy"]]
+[node name="Attack" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attack"]
 shape = SubResource("CapsuleShape3D_5h6lu")
 
 [node name="DamageArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115377, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68565, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0156447, 0.68565, 0.0190907)
 shape = SubResource("SphereShape3D_gc1u6")
