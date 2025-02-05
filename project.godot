@@ -26,7 +26,6 @@ import/blender/enabled=false
 
 player=""
 Enemy=""
-Hud=""
 trampolines=""
 
 [input]

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://csj5a3ubcnxaa"]
+[gd_scene load_steps=3 format=3 uid="uid://csj5a3ubcnxaa"]
 
 [ext_resource type="Script" path="res://player_hud_3d.gd" id="1_y8hpd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_epxkt"]
+font_size = 24
 
 [node name="PlayerHud3d" type="Control" groups=["Hud"]]
 layout_mode = 3
@@ -31,3 +34,29 @@ offset_top = 6.0
 offset_right = 400.0
 offset_bottom = 57.0
 show_percentage = false
+
+[node name="Popup" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -36.0
+offset_right = 194.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_epxkt")
+horizontal_alignment = 1
+vertical_alignment = 1

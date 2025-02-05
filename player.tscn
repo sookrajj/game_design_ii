@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy0d5tbw3bnwa"]
+[gd_scene load_steps=7 format=3 uid="uid://cy0d5tbw3bnwa"]
 
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_hkd6f"]
+[ext_resource type="PackedScene" uid="uid://csj5a3ubcnxaa" path="res://player_hud_3d.tscn" id="2_c2bnr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msuf5"]
 
@@ -13,6 +14,8 @@ material = SubResource("StandardMaterial3D_msuf5")
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_hkd6f")
+
+[node name="PlayerHud3d" parent="." instance=ExtResource("2_c2bnr")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0315845, 0)

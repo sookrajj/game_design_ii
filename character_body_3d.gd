@@ -27,7 +27,8 @@ var MAX_HEALTH = 50
 var health = MAX_HEALTH
 var damage_lock = 0.0
 
-@onready var hud = get_tree().get_first_node_in_group("Hud")
+@onready var hud = $PlayerHud3d
+var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
 var gravity = true
 
 func _ready() -> void:
@@ -120,7 +121,10 @@ func _physics_process(delta: float) -> void:
 	
 	for tramp in get_tree().get_nodes_in_group("trampolines"):
 		if $Feet.overlaps_area(tramp.bounce):
-			velocity *= Vector3(0, 1.1, 0)
+			velocity += Vector3(0, 10, 0)
+	
+	if damage_lock == 0.0:
+		hud.dmg_overlay.material = null
 
 	move_and_slide()
 	#camera.position += headbob(delta)
@@ -130,6 +134,9 @@ func take_damage(dmg):
 	if damage_lock == 0.0:
 		damage_lock = 0.5
 		health -= dmg
+		var dint = clamp(1.0-((health + 0.01) / MAX_HEALTH), 0.1, 0.8)
+		hud.dmg_overlay.material = dmg_shader.duplicate()
+		hud.dmg_overlay.material.set_shader_parameter("intensity", dint)
 		if health <= 0:
 			await get_tree().create_timer(0.25).timeout
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
