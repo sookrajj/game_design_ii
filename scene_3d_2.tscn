@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ce6u547m34k3t"]
+[gd_scene load_steps=22 format=3 uid="uid://ce6u547m34k3t"]
 
 [ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_jrkr8"]
 [ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="2_v13p4"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cn4uqk87pgl1k" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_NormalGL.jpg" id="10_wtqbx"]
 [ext_resource type="Texture2D" uid="uid://cm7k578exxoa0" path="res://Assets/Textures/Metal048A_1K-JPG/Metal048A_1K-JPG_NormalGL.jpg" id="11_8e8fx"]
 [ext_resource type="Texture2D" uid="uid://cbecpvoottirk" path="res://Assets/Textures/Ground080_1K-JPG/Ground080_1K-JPG_NormalGL.jpg" id="12_g0hti"]
+[ext_resource type="PackedScene" uid="uid://cujdwch7cv04v" path="res://ball.tscn" id="14_6p3sq"]
+[ext_resource type="PackedScene" uid="uid://1gan4a1dlux5" path="res://goal.tscn" id="15_r82ti"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w5w8q"]
 panorama = ExtResource("1_jrkr8")
@@ -45,6 +47,7 @@ environment = SubResource("Environment_8uqa4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.333
 light_angular_distance = 1.0
 shadow_enabled = true
 
@@ -76,4 +79,11 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="player" parent="." instance=ExtResource("2_v13p4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.518, 41.1095, -87.5503)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.3574, 2.77874, 142.219)
+
+[node name="ball" parent="." instance=ExtResource("14_6p3sq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.1024, 9.57025, 183.767)
+
+[node name="goal" parent="." instance=ExtResource("15_r82ti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.175, -55.4348, -161.013)
+next_lvl = "scene_3d"

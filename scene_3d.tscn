@@ -254,8 +254,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2398, 0.00776339, -37.3309
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.7983, 0.078986, -7.85604)
 
 [node name="goal" parent="." instance=ExtResource("16_0n4yo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.045, 5.60702, -76.8165)
-next_lvl = "scene_3d"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -232.196, 4.17794, -54.2216)
+next_lvl = "scene_3d_2"
 
 [node name="ball" parent="." instance=ExtResource("17_wrpc0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09471, 1.80983, -37.61)

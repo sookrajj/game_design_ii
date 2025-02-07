@@ -132,8 +132,21 @@ func _physics_process(delta: float) -> void:
 		var c = get_slide_collision(i)
 		var col = c.get_collider()
 		if col is RigidBody3D && col.is_in_group("interact"):
-			print("hi")
-			col.apply_central_force(-c.get_normal() * push *1000)
+			col.apply_central_force(-c.get_normal() * push)
+	
+	if Input.is_action_just_pressed("ui_home"):
+		push *= 10
+	if Input.is_action_just_pressed("ui_end"):
+		push /= 10
+	if Input.is_action_just_pressed("bigify"):
+		if scale < Vector3(100, 100, 100):
+			self.scale *= 10
+			self.speed *= 10
+			self.position += Vector3(0, self.scale.y/2, 0)
+	if Input.is_action_just_pressed("smallify"):
+		if scale > Vector3(0.01, 0.01, 0.01):
+			self.scale /= 10
+			self.speed /= 10
 
 	move_and_slide()
 	#camera.position += headbob(delta)
