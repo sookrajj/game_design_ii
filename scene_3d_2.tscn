@@ -1,0 +1,79 @@
+[gd_scene load_steps=20 format=3 uid="uid://ce6u547m34k3t"]
+
+[ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_jrkr8"]
+[ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="2_v13p4"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_242nd"]
+[ext_resource type="Resource" path="res://Assets/Terrains/scene_3d_2/data.hterrain" id="3_gpype"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_mns8l"]
+[ext_resource type="Texture2D" uid="uid://butj3wrmkkour" path="res://Assets/Textures/PavingStones138_1K-JPG/PavingStones138_1K-JPG_Color.jpg" id="5_s0wig"]
+[ext_resource type="Texture2D" uid="uid://bo84k4ri64gd7" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_Color.jpg" id="6_5yxij"]
+[ext_resource type="Texture2D" uid="uid://52astb3moovi" path="res://Assets/Textures/Metal048A_1K-JPG/Metal048A_1K-JPG_Color.jpg" id="7_4b60k"]
+[ext_resource type="Texture2D" uid="uid://cjy0o6tqu3a7s" path="res://Assets/Textures/Ground080_1K-JPG/Ground080_1K-JPG_Color.jpg" id="8_lysbs"]
+[ext_resource type="Texture2D" uid="uid://pr4hyh6x3xdp" path="res://Assets/Textures/PavingStones138_1K-JPG/PavingStones138_1K-JPG_NormalGL.jpg" id="9_5sbdp"]
+[ext_resource type="Texture2D" uid="uid://cn4uqk87pgl1k" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_NormalGL.jpg" id="10_wtqbx"]
+[ext_resource type="Texture2D" uid="uid://cm7k578exxoa0" path="res://Assets/Textures/Metal048A_1K-JPG/Metal048A_1K-JPG_NormalGL.jpg" id="11_8e8fx"]
+[ext_resource type="Texture2D" uid="uid://cbecpvoottirk" path="res://Assets/Textures/Ground080_1K-JPG/Ground080_1K-JPG_NormalGL.jpg" id="12_g0hti"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w5w8q"]
+panorama = ExtResource("1_jrkr8")
+
+[sub_resource type="Sky" id="Sky_g1pv8"]
+sky_material = SubResource("PanoramaSkyMaterial_w5w8q")
+
+[sub_resource type="Environment" id="Environment_8uqa4"]
+background_mode = 2
+background_energy_multiplier = 1.01
+sky = SubResource("Sky_g1pv8")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7ens"]
+albedo_color = Color(0, 0.648447, 1.92523e-07, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qy11v"]
+material = SubResource("StandardMaterial3D_a7ens")
+size = Vector2(1000, 1000)
+
+[sub_resource type="Resource" id="Resource_pnm0i"]
+script = ExtResource("5_mns8l")
+mode = 0
+textures = [[ExtResource("5_s0wig"), ExtResource("6_5yxij"), ExtResource("7_4b60k"), ExtResource("8_lysbs")], [ExtResource("9_5sbdp"), ExtResource("10_wtqbx"), ExtResource("11_8e8fx"), ExtResource("12_g0hti")]]
+
+[node name="scene_3d_2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8uqa4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_angular_distance = 1.0
+shadow_enabled = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_qy11v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.915068, -0.0303224, 0.402158, 0.0271563, 0.999539, 0.0135732, -0.402384, -0.00149933, 0.91547, 4.65723, 2.05878, 8.05633)
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("3_242nd")
+map_scale = Vector3(10, 1, 10)
+centered = true
+_terrain_data = ExtResource("3_gpype")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_pnm0i")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+
+[node name="player" parent="." instance=ExtResource("2_v13p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.518, 41.1095, -87.5503)

@@ -22,6 +22,8 @@ const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0
 
+var push = 25.0
+
 var inertia = Vector3.ZERO
 var MAX_HEALTH = 50
 var health = MAX_HEALTH
@@ -125,6 +127,13 @@ func _physics_process(delta: float) -> void:
 	
 	if damage_lock == 0.0:
 		hud.dmg_overlay.material = null
+		
+	for i in range(get_slide_collision_count()):
+		var c = get_slide_collision(i)
+		var col = c.get_collider()
+		if col is RigidBody3D && col.is_in_group("interact"):
+			print("hi")
+			col.apply_central_force(-c.get_normal() * push *1000)
 
 	move_and_slide()
 	#camera.position += headbob(delta)

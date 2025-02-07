@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://blwxx7135okaw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qu6oi"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cew8f"]
+size = Vector3(3, 3, 3)
+
+[node name="Pushblock" type="RigidBody3D" groups=["interact"]]
+mass = 2.25
+lock_rotation = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_qu6oi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cew8f")

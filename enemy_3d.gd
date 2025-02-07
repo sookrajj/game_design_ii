@@ -4,6 +4,9 @@ extends CharacterBody3D
 @onready var nav_agent_3d = $NavigationAgent3D
 @onready var atk_area = $Attack
 
+var x = 0.0
+var y = 0.0
+var z = 0.0
 var speed = 3.0
 var accel = 20
 var attack = 10
@@ -27,5 +30,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	move_and_slide()
 	
-	
-	
+
+
+func _ready() -> void:
+	nav_agent_3d.target_position = global_position
