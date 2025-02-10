@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://tvktusewixty"]
+[gd_scene load_steps=28 format=3 uid="uid://tvktusewixty"]
 
 [ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="1_f3702"]
 [ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_x4gd3"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cg2sy0m7sk0cq" path="res://trampoline.tscn" id="16_s3num"]
 [ext_resource type="PackedScene" uid="uid://cujdwch7cv04v" path="res://ball.tscn" id="17_wrpc0"]
 [ext_resource type="PackedScene" uid="uid://blwxx7135okaw" path="res://pushblock.tscn" id="18_tw364"]
+[ext_resource type="PackedScene" uid="uid://cw1bcoa0emjal" path="res://Assets/models/tree_house/sketchfab_scene.tscn" id="19_gcvdw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fdp30"]
 panorama = ExtResource("1_x4gd3")
@@ -268,3 +269,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.957, -1.69157, -50.7216)
 
 [node name="Pushblock" parent="." instance=ExtResource("18_tw364")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -186.246, 0.481081, -63.6848)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("19_gcvdw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.436, -9.53674e-07, 62.4887)

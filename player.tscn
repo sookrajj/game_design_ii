@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy0d5tbw3bnwa"]
+[gd_scene load_steps=8 format=3 uid="uid://cy0d5tbw3bnwa"]
 
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_hkd6f"]
 [ext_resource type="PackedScene" uid="uid://csj5a3ubcnxaa" path="res://player_hud_3d.tscn" id="2_c2bnr"]
+[ext_resource type="PackedScene" uid="uid://cukg3mhrejef0" path="res://Assets/models/gobot.glb" id="3_ek3du"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msuf5"]
 
@@ -9,6 +10,7 @@
 material = SubResource("StandardMaterial3D_msuf5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfvlk"]
+height = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_00utc"]
 
@@ -19,14 +21,19 @@ script = ExtResource("1_hkd6f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0315845, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_yr7rr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101326, 0.225774, 0)
 shape = SubResource("CapsuleShape3D_lfvlk")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0.6, 0)
 spring_length = 6.0
+
+[node name="gobot" parent="." instance=ExtResource("3_ek3du")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0527655, -0.415441, -0.0200214)
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547608, 0)
@@ -39,5 +46,5 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.630139, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000204802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258718, 0.000204802)
 shape = SubResource("SphereShape3D_00utc")

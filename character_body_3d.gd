@@ -31,10 +31,14 @@ var damage_lock = 0.0
 
 @onready var hud = $PlayerHud3d
 var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
+
+@onready var model = $gobot
+@onready var ani = $gobot/AnimationPlayer
 var gravity = true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	model.visible = false
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -74,16 +78,20 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		#TODO walk/run anim
+		if speed == walk_speed: 
+			ani.play("Walk")
+		else:
+			ani.play("Run")
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:
+		ani.play("Idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
 	if Input.is_action_pressed("sprint"):
 		speed = sprint_speed
-		FOV_change = 4.0
+		FOV_change = 1.5
 	if Input.is_action_just_released("sprint"):
 		speed = walk_speed
 		FOV_change = 1.0
@@ -188,3 +196,4 @@ func toggle_camera_parent():
 		camera.position = cam_pos
 		#TODO: model invisible
 	first_person = !first_person
+	model.visible = !first_person
