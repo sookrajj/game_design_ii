@@ -91,14 +91,14 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		speed = sprint_speed
-		FOV_change = 1.5
+		FOV_change = 0.9
 	if Input.is_action_just_released("sprint"):
 		speed = walk_speed
 		FOV_change = 1.0
 	
 	if Input.is_action_just_pressed("dash"):
 		speed = dash
-		FOV_change = 5.0
+		FOV_change = 0.90
 	
 	if Input.is_action_just_pressed("gravity"):
 		gravity = false
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 	
 	var velocity_clamped = clamp(velocity.length(), .5, speed * 2)
 	var target = base_fov + FOV_change * velocity_clamped
-	camera.fov = lerp(camera.fov, target, delta * 10.0)
+	#camera.fov = lerp(camera.fov, target, delta * 10.0)
 	
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = headbob(t_bob)
@@ -143,9 +143,9 @@ func _physics_process(delta: float) -> void:
 			col.apply_central_force(-c.get_normal() * push)
 	
 	if Input.is_action_just_pressed("ui_home"):
-		push *= 10
+		push *= 2
 	if Input.is_action_just_pressed("ui_end"):
-		push /= 10
+		push /= 2
 	if Input.is_action_just_pressed("bigify"):
 		if scale < Vector3(100, 100, 100):
 			self.scale *= 10

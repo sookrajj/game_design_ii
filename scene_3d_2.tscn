@@ -86,4 +86,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.1024, 9.57025, 183.767)
 
 [node name="goal" parent="." instance=ExtResource("15_r82ti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.175, -55.4348, -161.013)
-next_lvl = "scene_3d"
+next_lvl = "scene_3d_3"

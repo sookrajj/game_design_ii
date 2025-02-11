@@ -76,9 +76,6 @@ shape = SubResource("ConcavePolygonShape3D_b2mmf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/ce59323e75fa46e0ad765f0b9107082b_fbx/RootNode/All_house/All_house_Props1_0/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_roypv")
 
-[node name="All_house_Painted_wood_0" parent="Sketchfab_model/ce59323e75fa46e0ad765f0b9107082b_fbx/RootNode/All_house" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/ce59323e75fa46e0ad765f0b9107082b_fbx/RootNode/All_house/All_house_Painted_wood_0" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/ce59323e75fa46e0ad765f0b9107082b_fbx/RootNode/All_house/All_house_Painted_wood_0/StaticBody3D" index="0"]

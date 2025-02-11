@@ -1,12 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnm4ts6ig3ep4"]
+[gd_scene load_steps=18 format=3 uid="uid://cnm4ts6ig3ep4"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_u0ddr"]
 [ext_resource type="Resource" path="res://Assets/Terrains/scene_3d_3/data.hterrain" id="2_qjdu8"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_wkkhb"]
 [ext_resource type="Texture2D" uid="uid://bxbsap14epn11" path="res://Assets/Textures/Rock051_1K-JPG/Rock051_1K-JPG_Color.jpg" id="4_jbydy"]
+[ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="4_nssxm"]
 [ext_resource type="Texture2D" uid="uid://bo84k4ri64gd7" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_Color.jpg" id="5_5t6g3"]
 [ext_resource type="Texture2D" uid="uid://ci7kn6qnvh4wm" path="res://Assets/Textures/Rock051_1K-JPG/Rock051_1K-JPG_NormalGL.jpg" id="6_o668l"]
 [ext_resource type="Texture2D" uid="uid://cn4uqk87pgl1k" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_NormalGL.jpg" id="7_h1dga"]
+[ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="8_p8258"]
+[ext_resource type="PackedScene" uid="uid://cujdwch7cv04v" path="res://ball.tscn" id="9_8niu8"]
+[ext_resource type="PackedScene" uid="uid://1gan4a1dlux5" path="res://goal.tscn" id="10_r1cdx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n863t"]
+size = Vector3(1000, 500, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_snll3"]
+left_to_right = 1.0
+size = Vector3(100, 10, 10)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yopa7"]
+panorama = ExtResource("4_nssxm")
+
+[sub_resource type="Sky" id="Sky_nc6gp"]
+sky_material = SubResource("PanoramaSkyMaterial_yopa7")
+
+[sub_resource type="Environment" id="Environment_6u3wh"]
+background_mode = 2
+background_energy_multiplier = 1.01
+sky = SubResource("Sky_nc6gp")
+tonemap_mode = 2
 
 [sub_resource type="Resource" id="Resource_2dplb"]
 script = ExtResource("3_wkkhb")
@@ -14,6 +37,55 @@ mode = 0
 textures = [[ExtResource("4_jbydy"), ExtResource("5_5t6g3")], [ExtResource("6_o668l"), ExtResource("7_h1dga")]]
 
 [node name="scene_3d_3" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("8_p8258")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150091, 0.67621, 231.852)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290716, -7.62939e-06, 254.004)
+use_collision = true
+mesh = SubResource("BoxMesh_n863t")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -252.061)
+use_collision = true
+mesh = SubResource("BoxMesh_n863t")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -246.1, 0, -135.123)
+use_collision = true
+mesh = SubResource("BoxMesh_n863t")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 251.061, 0, -135.123)
+use_collision = true
+mesh = SubResource("BoxMesh_n863t")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, 12.4941, 238.49, -135.123)
+visible = false
+use_collision = true
+mesh = SubResource("BoxMesh_n863t")
+
+[node name="ball" parent="." instance=ExtResource("9_8niu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.688485, 2.45092, 224.976)
+
+[node name="goal" parent="." instance=ExtResource("10_r1cdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86041, -102.243, -232.386)
+next_lvl = "scene_3d"
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.61177, 5.40303)
+use_collision = true
+mesh = SubResource("PrismMesh_snll3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6u3wh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_angular_distance = 1.0
+shadow_enabled = true
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("1_u0ddr")
@@ -33,3 +105,68 @@ shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
+
+[node name="wall" type="Node3D" parent="."]
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3019, 182.471, 0.35476)
+use_collision = true
+polygon = PackedVector2Array(-284.064, -17.8805, -280.92, 50.9877, -155.559, 65.4266, -208.88, -14.6671)
+depth = 5.88
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 144.388, 182.471, 0.35476)
+use_collision = true
+polygon = PackedVector2Array(-248.863, 5.92326, -280.92, 50.9877, -155.559, 65.4266, -157.38, -13.7909)
+depth = 5.88
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143.735, 106.811, 0.542123)
+use_collision = true
+polygon = PackedVector2Array(-276.69, -22.6974, -202.969, 12.0411, -155.559, 65.4266, -170.11, -22.9065)
+depth = 5.88
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.847, 104.527, -0.349593)
+use_collision = true
+polygon = PackedVector2Array(-296.491, -25.2711, -298.133, 63.5707, -203.745, 61.4622, -156.758, -23.1068)
+depth = 5.88
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.691, 23.3393, 5.23383)
+use_collision = true
+polygon = PackedVector2Array(-296.491, -25.2711, -298.133, 63.5707, -65.2358, 63.8916, -42.7245, -21.8589)
+depth = 5.88
+
+[node name="wall2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 270.857, 0, 0)
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1523, 182.471, 0.35476)
+use_collision = true
+polygon = PackedVector2Array(-304.83, -22.3926, -312.727, 53.6423, -155.559, 65.4266, -208.88, -14.6671)
+depth = 5.88
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 144.388, 182.471, 0.35476)
+use_collision = true
+polygon = PackedVector2Array(-248.863, 5.92326, -280.92, 50.9877, -155.559, 65.4266, -157.38, -13.7909)
+depth = 5.88
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143.735, 106.811, 0.542123)
+use_collision = true
+polygon = PackedVector2Array(-276.69, -22.6974, -202.969, 12.0411, -155.559, 65.4266, -156.758, -23.1068)
+depth = 5.88
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.847, 104.527, -0.349593)
+use_collision = true
+polygon = PackedVector2Array(-278.707, -21.9347, -316.135, 55.9246, -203.745, 61.4622, -156.758, -23.1068)
+depth = 5.88
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7912, 20.2964, -0.221466)
+use_collision = true
+polygon = PackedVector2Array(-296.491, -25.2711, -274.642, 64.1237, -43.5743, 63.4409, -42.7245, -21.8589)
+depth = 5.88

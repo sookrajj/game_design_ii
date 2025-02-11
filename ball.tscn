@@ -8,6 +8,7 @@ height = 4.0
 radius = 2.0
 
 [node name="ball" type="RigidBody3D" groups=["interact"]]
+mass = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_7jt6f")
