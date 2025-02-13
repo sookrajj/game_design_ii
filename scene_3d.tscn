@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://tvktusewixty"]
+[gd_scene load_steps=29 format=3 uid="uid://tvktusewixty"]
 
 [ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="1_f3702"]
 [ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_x4gd3"]
@@ -17,8 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://1gan4a1dlux5" path="res://goal.tscn" id="16_0n4yo"]
 [ext_resource type="PackedScene" uid="uid://cg2sy0m7sk0cq" path="res://trampoline.tscn" id="16_s3num"]
 [ext_resource type="PackedScene" uid="uid://cujdwch7cv04v" path="res://ball.tscn" id="17_wrpc0"]
-[ext_resource type="PackedScene" uid="uid://blwxx7135okaw" path="res://pushblock.tscn" id="18_tw364"]
-[ext_resource type="PackedScene" uid="uid://cw1bcoa0emjal" path="res://Assets/models/tree_house/sketchfab_scene.tscn" id="19_gcvdw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fdp30"]
 panorama = ExtResource("1_x4gd3")
@@ -49,6 +47,15 @@ textures = [[ExtResource("6_mme3n"), ExtResource("7_l31l0"), ExtResource("8_5yqu
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rwrqh"]
 agent_height = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_7sak5"]
+size = Vector3(1000, 200, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bsmeo"]
+size = Vector3(1, 200, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_53wy0"]
+size = Vector3(1000, 1, 1000)
 
 [node name="scene_3d" type="Node3D"]
 
@@ -261,14 +268,32 @@ next_lvl = "scene_3d_2"
 [node name="ball" parent="." instance=ExtResource("17_wrpc0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09471, 1.80983, -37.61)
 
-[node name="ball2" parent="." instance=ExtResource("17_wrpc0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.92469, 3.96771, -6.69783)
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8801, -255.594)
+visible = false
+use_collision = true
+mesh = SubResource("BoxMesh_7sak5")
 
-[node name="ball3" parent="." instance=ExtResource("17_wrpc0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.957, -1.69157, -50.7216)
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8801, 271.419)
+visible = false
+use_collision = true
+mesh = SubResource("BoxMesh_7sak5")
 
-[node name="Pushblock" parent="." instance=ExtResource("18_tw364")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -186.246, 0.481081, -63.6848)
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 256.836, 0, 0)
+visible = false
+use_collision = true
+mesh = SubResource("BoxMesh_bsmeo")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("19_gcvdw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.436, -9.53674e-07, 62.4887)
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -238.499, 0, 0)
+visible = false
+use_collision = true
+mesh = SubResource("BoxMesh_bsmeo")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 92.9294, 0)
+visible = false
+use_collision = true
+mesh = SubResource("BoxMesh_53wy0")

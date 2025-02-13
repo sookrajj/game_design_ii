@@ -17,12 +17,11 @@ func take_damage(_dmg) :
 
 
 func _physics_process(delta: float) -> void:
-	for player in get_tree().get_nodes_in_group("player"):
+	for player in get_tree().get_nodes_in_group("interact"):
 		if $AttackRange.overlaps_body(player):
 			nav_agent_3d.target_position = player.global_position
 		if atk_area.overlaps_body(player):
-			player.take_damage(attack)
-			player.inertia = (player.global_position - global_position).normalized() * knockback
+			player.queue_free()
 	
 	var direction = (nav_agent_3d.target_position - self.global_position).normalized()
 	velocity = velocity.lerp(direction * speed, accel * delta)

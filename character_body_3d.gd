@@ -12,7 +12,6 @@ const CAM_SENSITIVITY = 0.03
 @onready var camera = $Head/Camera3D
 @onready var camera_arm = $SpringArm3D
 @onready var cam_pos = camera.position
-
 @onready var base_fov = camera.fov
 var FOV_change = 1.0
 
@@ -21,13 +20,21 @@ var first_person = true
 const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0
-
-var push = 25.0
+var pushes = {
+	"putter" : 10.0,
+	"chipper" : 50.0,
+	"iron" : 100.0,
+	"hybrid" : 250.0,
+	"driver" : 500.0
+}
+var push = 50.0
 
 var inertia = Vector3.ZERO
 var MAX_HEALTH = 50
 var health = MAX_HEALTH
 var damage_lock = 0.0
+var ballpos = Vector3(0, 10, 0)
+@onready var ball = preload("res://ball.tscn")
 
 @onready var hud = $PlayerHud3d
 var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
@@ -35,10 +42,12 @@ var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
 @onready var model = $gobot
 @onready var ani = $gobot/AnimationPlayer
 var gravity = true
+var equipped = "chipper"
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	model.visible = false
+	ballpos = get_tree().get_first_node_in_group("interact").global_position
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -54,6 +63,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if equipped != Glob.current:
+		equipped = Glob.current
+		push = pushes[equipped]
+	if get_tree().get_node_count_in_group("interact") == 0:
+		var ba = ball.instantiate()
+		ba.global_position = ballpos
+		get_parent().add_child(ba)
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -99,7 +115,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash"):
 		speed = dash
 		FOV_change = 0.90
-	
+	if Input.is_action_just_released("dash"):
+		speed = walk_speed
+		FOV_change = 1.0
 	if Input.is_action_just_pressed("gravity"):
 		gravity = false
 		#print(self.gravity)
@@ -143,9 +161,15 @@ func _physics_process(delta: float) -> void:
 			col.apply_central_force(-c.get_normal() * push)
 	
 	if Input.is_action_just_pressed("ui_home"):
-		push *= 2
+		if push == 1600:
+			pass
+		else :
+			push *= 2
 	if Input.is_action_just_pressed("ui_end"):
-		push /= 2
+		if push == 6.25:
+			pass
+		else:
+			push /= 2
 	if Input.is_action_just_pressed("bigify"):
 		if scale < Vector3(100, 100, 100):
 			self.scale *= 10
@@ -155,6 +179,8 @@ func _physics_process(delta: float) -> void:
 		if scale > Vector3(0.01, 0.01, 0.01):
 			self.scale /= 10
 			self.speed /= 10
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 
 	move_and_slide()
 	#camera.position += headbob(delta)

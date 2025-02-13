@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://pcwk00ys4eew"]
+
+[ext_resource type="Script" path="res://choose_club.gd" id="1_wsnsu"]
+
+[sub_resource type="Theme" id="Theme_0t34e"]
+default_font_size = 32
+
+[node name="choose_club" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wsnsu")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 28.0
+offset_right = 318.0
+offset_bottom = 131.0
+theme = SubResource("Theme_0t34e")
+text = "Driver"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 149.0
+offset_right = 318.0
+offset_bottom = 252.0
+theme = SubResource("Theme_0t34e")
+text = "Hybrid"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 259.0
+offset_right = 322.0
+offset_bottom = 362.0
+theme = SubResource("Theme_0t34e")
+text = "Iron"
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 382.0
+offset_right = 322.0
+offset_bottom = 485.0
+theme = SubResource("Theme_0t34e")
+text = "Chipper"
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 505.0
+offset_right = 328.0
+offset_bottom = 608.0
+theme = SubResource("Theme_0t34e")
+text = "Putter"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
