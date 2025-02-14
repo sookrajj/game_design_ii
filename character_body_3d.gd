@@ -21,11 +21,11 @@ const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0
 var pushes = {
-	"putter" : 10.0,
-	"chipper" : 50.0,
-	"iron" : 100.0,
-	"hybrid" : 250.0,
-	"driver" : 500.0
+	"putter" : 50.0,
+	"chipper" : 200.0,
+	"iron" : 500.0,
+	"hybrid" : 1000.0,
+	"driver" : 2000.0
 }
 var push = 50.0
 
@@ -43,11 +43,11 @@ var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
 @onready var ani = $gobot/AnimationPlayer
 var gravity = true
 var equipped = "chipper"
+@onready var choose = $choose_club
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	model.visible = false
-	ballpos = get_tree().get_first_node_in_group("interact").global_position
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -63,6 +63,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if ballpos == Vector3(0, 10, 0) && get_tree().get_node_count_in_group("interact") != 0 :
+		ballpos = get_tree().get_first_node_in_group("interact").global_position
 	if equipped != Glob.current:
 		equipped = Glob.current
 		push = pushes[equipped]
@@ -127,6 +129,9 @@ func _physics_process(delta: float) -> void:
 		gravity = true
 		#self.gravity = Vector3(0, -9.8, 0)
 
+	if Input.is_action_just_pressed("change_club"):
+		choose.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	var velocity_clamped = clamp(velocity.length(), .5, speed * 2)
 	var target = base_fov + FOV_change * velocity_clamped

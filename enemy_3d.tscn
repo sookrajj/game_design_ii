@@ -12,7 +12,8 @@ roughness = 0.44
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_881nf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j6arw"]
-radius = 8.0
+height = 4.0
+radius = 20.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h6lu"]
 radius = 0.75

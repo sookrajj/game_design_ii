@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy0d5tbw3bnwa"]
+[gd_scene load_steps=9 format=3 uid="uid://cy0d5tbw3bnwa"]
 
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_hkd6f"]
 [ext_resource type="PackedScene" uid="uid://csj5a3ubcnxaa" path="res://player_hud_3d.tscn" id="2_c2bnr"]
+[ext_resource type="PackedScene" uid="uid://pcwk00ys4eew" path="res://choose_club.tscn" id="2_oe3v8"]
 [ext_resource type="PackedScene" uid="uid://cukg3mhrejef0" path="res://Assets/models/gobot.glb" id="3_ek3du"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msuf5"]
@@ -16,6 +17,9 @@ height = 1.5
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_hkd6f")
+
+[node name="choose_club" parent="." instance=ExtResource("2_oe3v8")]
+visible = false
 
 [node name="PlayerHud3d" parent="." instance=ExtResource("2_c2bnr")]
 

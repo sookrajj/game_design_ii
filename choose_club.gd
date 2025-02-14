@@ -12,20 +12,30 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	Glob.current = "Driver"
+	Glob.current = "driver"
+	self.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_button_2_pressed() -> void:
-	Glob.current = "Hybrid"
+	Glob.current = "hybrid"
+	self.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_button_3_pressed() -> void:
-	Glob.current = "Iron"
+	Glob.current = "iron"
+	self.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_button_4_pressed() -> void:
-	Glob.current = "Chipper"
+	Glob.current = "chipper"
+	self.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_button_5_pressed() -> void:
-	Glob.current = "Putter"
+	Glob.current = "putter"
+	self.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
