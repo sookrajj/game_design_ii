@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://tvktusewixty"]
+[gd_scene load_steps=30 format=3 uid="uid://tvktusewixty"]
 
 [ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="1_f3702"]
 [ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_x4gd3"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://1gan4a1dlux5" path="res://goal.tscn" id="16_0n4yo"]
 [ext_resource type="PackedScene" uid="uid://cg2sy0m7sk0cq" path="res://trampoline.tscn" id="16_s3num"]
 [ext_resource type="PackedScene" uid="uid://cujdwch7cv04v" path="res://ball.tscn" id="17_wrpc0"]
+[ext_resource type="PackedScene" uid="uid://dnaabktdc5afl" path="res://Assets/Tinkercad/Swanky Snicket.glb" id="18_8p5b2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fdp30"]
 panorama = ExtResource("1_x4gd3")
@@ -297,3 +298,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 92.9294, 0)
 visible = false
 use_collision = true
 mesh = SubResource("BoxMesh_53wy0")
+
+[node name="Tinkercad GLTF Scene" parent="." instance=ExtResource("18_8p5b2")]
+transform = Transform3D(15.3283, -12.3985, -3.36437, 1.99768, 7.47429, -18.443, 12.6906, 13.799, 6.96683, 550.669, 1484.76, -1173.56)

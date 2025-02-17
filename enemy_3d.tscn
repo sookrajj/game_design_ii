@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkwtw1rab5h40"]
+[gd_scene load_steps=9 format=3 uid="uid://bkwtw1rab5h40"]
 
 [ext_resource type="Script" path="res://enemy_3d.gd" id="1_50168"]
+[ext_resource type="PackedScene" uid="uid://dnaabktdc5afl" path="res://Assets/Tinkercad/Swanky Snicket.glb" id="2_oq3bd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jd4mk"]
 
@@ -12,14 +13,15 @@ roughness = 0.44
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_881nf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j6arw"]
-height = 4.0
+height = 4.16516
 radius = 20.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h6lu"]
-radius = 0.75
+radius = 1.15444
+height = 3.57869
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gc1u6"]
-radius = 0.694872
+radius = 0.889619
 
 [node name="Enemy3D" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_50168")
@@ -27,11 +29,15 @@ script = ExtResource("1_50168")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_jd4mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_40k38")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_881nf")
+
+[node name="Tinkercad GLTF Scene" parent="." instance=ExtResource("2_oq3bd")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.139897, 0, -0.636175)
 
 [node name="AttackRange" type="Area3D" parent="."]
 
@@ -41,11 +47,12 @@ shape = SubResource("CylinderShape3D_j6arw")
 [node name="Attack" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0685353, 0, 0)
 shape = SubResource("CapsuleShape3D_5h6lu")
 
 [node name="DamageArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115377, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.771835, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0156447, 0.68565, 0.0190907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0931502, 0.68565, 0.0190907)
 shape = SubResource("SphereShape3D_gc1u6")
