@@ -22,20 +22,20 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fdp30"]
 panorama = ExtResource("1_x4gd3")
 
-[sub_resource type="Sky" id="Sky_6aicn"]
+[sub_resource type="Sky" id="Sky_6qh8q"]
 sky_material = SubResource("PanoramaSkyMaterial_fdp30")
 
 [sub_resource type="Environment" id="Environment_qvt4s"]
 background_mode = 2
 background_energy_multiplier = 1.01
-sky = SubResource("Sky_6aicn")
+sky = SubResource("Sky_6qh8q")
 tonemap_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu2d6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouejw"]
 albedo_color = Color(0, 0.41, 0.150333, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p4fxq"]
-material = SubResource("StandardMaterial3D_iu2d6")
+material = SubResource("StandardMaterial3D_ouejw")
 size = Vector2(1000, 1000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gy8s"]
@@ -224,7 +224,7 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="Enemy3D" parent="." instance=ExtResource("14_ky1tp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2965, 5.87166, -43.9636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2965, 3.9172, -68.8931)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rwrqh")

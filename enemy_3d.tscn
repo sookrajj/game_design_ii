@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bkwtw1rab5h40"]
 
 [ext_resource type="Script" path="res://enemy_3d.gd" id="1_50168"]
-[ext_resource type="PackedScene" uid="uid://dnaabktdc5afl" path="res://Assets/Tinkercad/Swanky Snicket.glb" id="2_oq3bd"]
+[ext_resource type="PackedScene" uid="uid://nnfw1nyjjv1p" path="res://Assets/models/enemy/enemy.gltf" id="2_3skgh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jd4mk"]
 
@@ -13,20 +13,73 @@ roughness = 0.44
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_881nf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j6arw"]
-height = 4.16516
-radius = 20.0
+height = 6.10823
+radius = 22.9751
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h6lu"]
-radius = 1.15444
-height = 3.57869
+radius = 1.31795
+height = 6.09959
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gc1u6"]
-radius = 0.889619
+radius = 1.16211
 
 [node name="Enemy3D" type="CharacterBody3D" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.10113, 0.00980449)
 script = ExtResource("1_50168")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AuxScene" parent="." instance=ExtResource("2_3skgh")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+
+[node name="Skeleton3D" parent="AuxScene/Node" index="0"]
+bones/0/position = Vector3(0.504619, 95.9672, 0.532586)
+bones/0/rotation = Quaternion(-0.0312609, -0.0464954, -0.0299857, 0.997979)
+bones/1/rotation = Quaternion(-0.0194736, 0.0116959, 0.0234671, 0.999466)
+bones/2/rotation = Quaternion(0.0100895, 0.00164917, 0.0137372, 0.999853)
+bones/3/rotation = Quaternion(0.0585454, 0.00250126, 0.0136737, 0.998188)
+bones/4/rotation = Quaternion(0.0490733, -0.00103161, 0.00400109, 0.998787)
+bones/5/rotation = Quaternion(-0.065976, 0.0116309, -0.00142104, 0.997752)
+bones/11/rotation = Quaternion(0.703595, 0.295796, -0.505877, 0.401929)
+bones/12/rotation = Quaternion(0.355217, 0.13088, 0.108001, 0.919254)
+bones/13/rotation = Quaternion(-2.38419e-07, -0.0023863, 0.0125094, 0.999919)
+bones/14/rotation = Quaternion(0.0465967, -0.282681, -0.0142399, 0.957976)
+bones/15/rotation = Quaternion(0.181933, -0.00657054, -0.0345209, 0.982683)
+bones/16/rotation = Quaternion(0.181373, 4.7381e-08, -0.0185806, 0.983239)
+bones/17/rotation = Quaternion(0.155197, 2.86091e-08, -0.0158989, 0.987756)
+bones/19/rotation = Quaternion(0.135184, -0.00634985, -0.0260901, 0.990457)
+bones/20/rotation = Quaternion(0.151242, -1.91503e-08, -0.0154938, 0.988375)
+bones/21/rotation = Quaternion(0.159984, 7.8333e-08, -0.016389, 0.986984)
+bones/23/rotation = Quaternion(0.0647826, -0.00613506, 0.00543442, 0.997866)
+bones/24/rotation = Quaternion(0.15097, -4.82469e-08, -0.015466, 0.988417)
+bones/25/rotation = Quaternion(0.0700586, 1.44722e-07, -0.00717706, 0.997517)
+bones/27/rotation = Quaternion(0.182843, 0.0867076, 0.239442, 0.949588)
+bones/28/rotation = Quaternion(-0.057755, 0.108703, -0.262949, 0.956925)
+bones/29/rotation = Quaternion(-0.12146, -0.0739824, -0.0223448, 0.989583)
+bones/31/rotation = Quaternion(0.702539, -0.292983, 0.524593, 0.381317)
+bones/32/rotation = Quaternion(0.281937, -0.219289, -0.131373, 0.924751)
+bones/33/rotation = Quaternion(0, 0.0109395, -0.0573467, 0.998294)
+bones/34/rotation = Quaternion(0.0588715, 0.170854, 0.0159786, 0.983406)
+bones/35/rotation = Quaternion(0.185085, -0.0774844, -0.257208, 0.945296)
+bones/36/rotation = Quaternion(-0.0484987, -0.101199, 0.298648, 0.947743)
+bones/37/rotation = Quaternion(-0.158147, 0.0815886, 0.032639, 0.983498)
+bones/39/rotation = Quaternion(0.0581028, 0.00580406, -0.0080302, 0.998262)
+bones/40/rotation = Quaternion(0.151359, 1.29919e-07, 0.0123249, 0.988402)
+bones/41/rotation = Quaternion(0.0702886, -5.30854e-08, 0.00572384, 0.99751)
+bones/43/rotation = Quaternion(0.129185, 0.00618581, 0.0220511, 0.991356)
+bones/44/rotation = Quaternion(0.151494, 1.13621e-07, 0.0123361, 0.988381)
+bones/45/rotation = Quaternion(0.1602, 8.78936e-08, 0.0130455, 0.986998)
+bones/47/rotation = Quaternion(0.176153, 0.0064179, 0.0294749, 0.983901)
+bones/48/rotation = Quaternion(0.181723, 1.69501e-07, 0.0147977, 0.983239)
+bones/49/rotation = Quaternion(0.155501, 2.28174e-08, 0.0126625, 0.987755)
+bones/51/rotation = Quaternion(0.130889, 0.132171, 0.978632, -0.08762)
+bones/52/rotation = Quaternion(-0.238401, -0.0141476, 0.0367261, 0.970369)
+bones/53/rotation = Quaternion(0.534985, -0.134001, 0.090774, 0.829214)
+bones/54/rotation = Quaternion(0.292, -0.0997819, -0.021561, 0.950955)
+bones/56/rotation = Quaternion(-0.0910767, 0.0335204, 0.995081, -0.0198837)
+bones/57/rotation = Quaternion(-0.183968, 0.0830427, -0.03071, 0.978937)
+bones/58/rotation = Quaternion(0.571741, 0.135722, -0.118533, 0.800401)
+bones/59/rotation = Quaternion(0.310339, 0.106286, 0.0214947, 0.944421)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -36,18 +89,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_40k38")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_881nf")
 
-[node name="Tinkercad GLTF Scene" parent="." instance=ExtResource("2_oq3bd")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.139897, 0, -0.636175)
-
 [node name="AttackRange" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
 shape = SubResource("CylinderShape3D_j6arw")
 
 [node name="Attack" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.353034, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0685353, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0293885, -0.96374, 0)
 shape = SubResource("CapsuleShape3D_5h6lu")
 
 [node name="DamageArea" type="Area3D" parent="."]
@@ -56,3 +107,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.771835, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0931502, 0.68565, 0.0190907)
 shape = SubResource("SphereShape3D_gc1u6")
+
+[editable path="AuxScene"]

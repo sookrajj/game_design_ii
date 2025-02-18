@@ -1,0 +1,101 @@
+[gd_scene load_steps=24 format=3 uid="uid://c6f7ymu3ayjst"]
+
+[ext_resource type="Texture2D" uid="uid://q4646slgs6e7" path="res://Assets/Textures/NightSkyHDRI006_16K-TONEMAPPED.jpg" id="1_g634n"]
+[ext_resource type="PackedScene" uid="uid://cy0d5tbw3bnwa" path="res://player.tscn" id="2_gq6b1"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_i8fee"]
+[ext_resource type="Resource" path="res://Assets/Terrains/scene_3d/data.hterrain" id="4_kw4d0"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_0figk"]
+[ext_resource type="Texture2D" uid="uid://cjy0o6tqu3a7s" path="res://Assets/Textures/Ground080_1K-JPG/Ground080_1K-JPG_Color.jpg" id="6_xbtxq"]
+[ext_resource type="Texture2D" uid="uid://52astb3moovi" path="res://Assets/Textures/Metal048A_1K-JPG/Metal048A_1K-JPG_Color.jpg" id="7_0mev7"]
+[ext_resource type="Texture2D" uid="uid://butj3wrmkkour" path="res://Assets/Textures/PavingStones138_1K-JPG/PavingStones138_1K-JPG_Color.jpg" id="8_axc2j"]
+[ext_resource type="Texture2D" uid="uid://bo84k4ri64gd7" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_Color.jpg" id="9_tq6tl"]
+[ext_resource type="Texture2D" uid="uid://cbecpvoottirk" path="res://Assets/Textures/Ground080_1K-JPG/Ground080_1K-JPG_NormalGL.jpg" id="10_fgdw3"]
+[ext_resource type="Texture2D" uid="uid://cm7k578exxoa0" path="res://Assets/Textures/Metal048A_1K-JPG/Metal048A_1K-JPG_NormalGL.jpg" id="11_fnpbd"]
+[ext_resource type="Texture2D" uid="uid://pr4hyh6x3xdp" path="res://Assets/Textures/PavingStones138_1K-JPG/PavingStones138_1K-JPG_NormalGL.jpg" id="12_rn5fh"]
+[ext_resource type="Texture2D" uid="uid://cn4uqk87pgl1k" path="res://Assets/Textures/Carpet016_1K-JPG/Carpet016_1K-JPG_NormalGL.jpg" id="13_rkxx6"]
+[ext_resource type="PackedScene" uid="uid://bkwtw1rab5h40" path="res://enemy_3d.tscn" id="14_dousd"]
+[ext_resource type="PackedScene" uid="uid://cujdwch7cv04v" path="res://ball.tscn" id="15_wmoi0"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mlhe3"]
+panorama = ExtResource("1_g634n")
+
+[sub_resource type="Sky" id="Sky_6aicn"]
+sky_material = SubResource("PanoramaSkyMaterial_mlhe3")
+
+[sub_resource type="Environment" id="Environment_vecb0"]
+background_mode = 2
+background_energy_multiplier = 1.01
+sky = SubResource("Sky_6aicn")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu2d6"]
+albedo_color = Color(0, 0.41, 0.150333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aad2r"]
+material = SubResource("StandardMaterial3D_iu2d6")
+size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43qq5"]
+albedo_color = Color(0.11, 0.5105, 1, 1)
+
+[sub_resource type="Resource" id="Resource_4w742"]
+script = ExtResource("5_0figk")
+mode = 0
+textures = [[ExtResource("6_xbtxq"), ExtResource("7_0mev7"), ExtResource("8_axc2j"), ExtResource("9_tq6tl")], [ExtResource("10_fgdw3"), ExtResource("11_fnpbd"), ExtResource("12_rn5fh"), ExtResource("13_rkxx6")]]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_a0pna"]
+agent_height = 2.0
+
+[node name="test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vecb0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_angular_distance = 1.0
+shadow_enabled = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_aad2r")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_gq6b1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06684, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.915068, -0.0303224, 0.402158, 0.0271563, 0.999539, 0.0135732, -0.402384, -0.00149933, 0.91547, 4.65723, 2.05878, 8.05633)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.604921, 4.44945, -1.08282)
+use_collision = true
+size = Vector3(14.1992, 1, 7.20496)
+material = SubResource("StandardMaterial3D_43qq5")
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("3_i8fee")
+centered = true
+_terrain_data = ExtResource("4_kw4d0")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_4w742")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+
+[node name="Enemy3D" parent="." instance=ExtResource("14_dousd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2965, 3.9172, -68.8931)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_a0pna")
+
+[node name="ball" parent="." instance=ExtResource("15_wmoi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09471, 1.80983, -34.9799)
