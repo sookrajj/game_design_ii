@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_hkd6f"]
 [ext_resource type="PackedScene" uid="uid://csj5a3ubcnxaa" path="res://player_hud_3d.tscn" id="2_c2bnr"]
 [ext_resource type="PackedScene" uid="uid://pcwk00ys4eew" path="res://choose_club.tscn" id="2_oe3v8"]
-[ext_resource type="PackedScene" uid="uid://cukg3mhrejef0" path="res://Assets/models/gobot.glb" id="3_ek3du"]
+[ext_resource type="PackedScene" uid="uid://hc3k5c6wn1ox" path="res://Assets/models/the_don/cac-1740063639154.gltf" id="2_r6see"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msuf5"]
 
@@ -13,10 +13,70 @@ material = SubResource("StandardMaterial3D_msuf5")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfvlk"]
 height = 1.5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_00utc"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xki7p"]
+height = 2.29087
+radius = 0.613096
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_hkd6f")
+
+[node name="AuxScene" parent="." instance=ExtResource("2_r6see")]
+transform = Transform3D(-0.02, 0, 3.01992e-09, 0, 0.02, 0, -3.01992e-09, 0, -0.02, 0, 0, 0)
+
+[node name="Skeleton3D" parent="AuxScene/Node" index="1"]
+bones/0/position = Vector3(0.888135, 128.27, -1.30926)
+bones/0/rotation = Quaternion(-0.125334, -0.0596924, 0.00493279, 0.990305)
+bones/11/rotation = Quaternion(0.280235, -0.0727786, -0.00976378, 0.957119)
+bones/22/rotation = Quaternion(-0.11619, -0.0130172, 0.00715312, 0.993116)
+bones/33/rotation = Quaternion(-0.0268291, -0.0129845, 0.00951435, 0.99951)
+bones/44/rotation = Quaternion(0.130937, 0.026365, -0.0400456, 0.990231)
+bones/66/rotation = Quaternion(-0.00624945, 0.132165, -0.0861929, 0.987453)
+bones/110/rotation = Quaternion(-0.349448, -0.606232, 0.536439, -0.471807)
+bones/121/rotation = Quaternion(0.490758, -0.263072, 0.0165923, 0.830466)
+bones/132/rotation = Quaternion(2.60501e-07, -2.27363e-07, 0.504373, 0.863486)
+bones/143/rotation = Quaternion(-0.331364, 0.30131, -0.0526814, 0.892544)
+bones/154/rotation = Quaternion(0.220856, 0.0853446, 0.170071, 0.956564)
+bones/165/rotation = Quaternion(0.0132464, 0.00483625, -7.77495e-05, 0.999901)
+bones/176/rotation = Quaternion(-0.0301248, 0.000924749, 0.00411583, 0.999537)
+bones/198/rotation = Quaternion(0.292563, 0.00209701, -0.0472633, 0.955075)
+bones/209/rotation = Quaternion(-2.77592e-17, -1.06581e-13, 2.73429e-08, 1)
+bones/220/rotation = Quaternion(-0.0405335, -8.35708e-06, 0.00486875, 0.999166)
+bones/242/rotation = Quaternion(0.236422, 0.00294392, -0.0442502, 0.970638)
+bones/253/rotation = Quaternion(0.0448451, 7.625e-08, -0.00535317, 0.99898)
+bones/264/rotation = Quaternion(-0.0221647, 1.3663e-06, 0.00264537, 0.999751)
+bones/286/rotation = Quaternion(0.233214, 0.00494097, -0.0505656, 0.971097)
+bones/297/rotation = Quaternion(0.0441452, -6.21319e-08, -0.00523448, 0.999012)
+bones/308/rotation = Quaternion(-0.0192868, -1.27716e-08, 0.00228702, 0.999811)
+bones/330/rotation = Quaternion(0.277045, 0.0173158, -0.101584, 0.955315)
+bones/341/rotation = Quaternion(0.00435906, -6.32532e-06, 0.0353841, 0.999364)
+bones/352/rotation = Quaternion(-0.0309776, 0.000263917, 0.00380291, 0.999513)
+bones/374/rotation = Quaternion(0.464974, -0.52734, 0.549266, 0.451686)
+bones/385/rotation = Quaternion(0.377446, 0.236518, 0.326207, 0.833776)
+bones/396/rotation = Quaternion(1.7184e-08, -1.0331e-08, -0.671273, 0.741211)
+bones/407/rotation = Quaternion(-0.302694, -0.240189, 0.141885, 0.911348)
+bones/418/rotation = Quaternion(0.298312, -0.0965349, -0.16645, 0.934872)
+bones/429/rotation = Quaternion(0.0199201, -0.00453478, 0.000188163, 0.999791)
+bones/440/rotation = Quaternion(-0.0247768, -0.000271301, -0.00810154, 0.99966)
+bones/462/rotation = Quaternion(0.255769, -0.00762672, 0.0646966, 0.964541)
+bones/473/rotation = Quaternion(2.90605e-07, 2.13465e-08, -4.61867e-08, 1)
+bones/484/rotation = Quaternion(-0.0308764, 7.46421e-06, -0.0037446, 0.999516)
+bones/506/rotation = Quaternion(0.11608, -0.0053443, 0.0602103, 0.991399)
+bones/517/rotation = Quaternion(0.0914028, -6.91475e-08, 0.0110184, 0.995753)
+bones/528/rotation = Quaternion(0.0252459, 0.00787024, 0.00324554, 0.999645)
+bones/550/rotation = Quaternion(-0.0012374, -0.00119152, 0.0684141, 0.997656)
+bones/561/rotation = Quaternion(0.156283, 1.09287e-07, 0.0187152, 0.987535)
+bones/572/rotation = Quaternion(0.078753, 0.0131538, 0.010487, 0.996752)
+bones/594/rotation = Quaternion(-0.11718, 0.0119113, 0.0904082, 0.988915)
+bones/605/rotation = Quaternion(0.273745, 2.01739e-07, 0.0340037, 0.961201)
+bones/616/rotation = Quaternion(0.101427, -0.000262023, 0.0125715, 0.994764)
+bones/638/rotation = Quaternion(-0.0239009, 0.0190035, 0.996658, -0.0757627)
+bones/649/rotation = Quaternion(-0.329133, -0.096796, -0.0166659, 0.939161)
+bones/660/rotation = Quaternion(0.123125, -0.0489455, -0.063918, 0.98912)
+bones/671/rotation = Quaternion(0.471149, -0.0201846, 0.0560687, 0.880038)
+bones/693/rotation = Quaternion(-0.0187995, 0.468533, 0.883167, -0.0117931)
+bones/704/rotation = Quaternion(-0.712978, 0.0516679, 0.00198152, 0.699277)
+bones/715/rotation = Quaternion(0.394511, 0.00522264, 0.0627198, 0.916733)
+bones/726/rotation = Quaternion(0.464858, 0.0200191, -0.0562242, 0.883372)
 
 [node name="choose_club" parent="." instance=ExtResource("2_oe3v8")]
 visible = false
@@ -36,11 +96,8 @@ shape = SubResource("CapsuleShape3D_lfvlk")
 transform = Transform3D(1, 0, 0, 0, 0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0.6, 0)
 spring_length = 6.0
 
-[node name="gobot" parent="." instance=ExtResource("3_ek3du")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0527655, -0.415441, -0.0200214)
-
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547608, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50576, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 current = true
@@ -50,5 +107,7 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.630139, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258718, 0.000204802)
-shape = SubResource("SphereShape3D_00utc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0180211, -0.275445, 0.000204802)
+shape = SubResource("CylinderShape3D_xki7p")
+
+[editable path="AuxScene"]

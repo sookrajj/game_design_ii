@@ -11,9 +11,12 @@ const JUMP_VELOCITY = 7.5
 const CAM_SENSITIVITY = 0.03
 @onready var camera = $Head/Camera3D
 @onready var camera_arm = $SpringArm3D
+@onready var spring_pos = camera_arm.position
 @onready var cam_pos = camera.position
 @onready var base_fov = camera.fov
 var FOV_change = 1.0
+var sper = false
+
 
 var first_person = true
 
@@ -39,8 +42,8 @@ var ballpos = Vector3(0, 10, 0)
 @onready var hud = $PlayerHud3d
 var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
 
-@onready var model = $gobot
-@onready var ani = $gobot/AnimationPlayer
+@onready var model = $AuxScene
+@onready var ani = $AuxScene/AnimationPlayer
 var gravity = true
 var equipped = "chipper"
 @onready var choose = $choose_club
@@ -58,7 +61,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			self.rotate_y(-event.relative.x * (CAM_SENSITIVITY / 10.0))
 			camera_arm.rotate_x(-event.relative.y * (CAM_SENSITIVITY / 10.0))
-			camera_arm.rotation.x = clamp(camera_arm.rotation.x, deg_to_rad(-75), deg_to_rad(75))
+			camera_arm.rotation.x = clamp(camera_arm.rotation.x, deg_to_rad(-45), deg_to_rad(45))
 
 
 
@@ -80,7 +83,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("change_camera"):
 		toggle_camera_parent()
-	
+	if Input.is_action_just_pressed("emote"):
+		ani.play("HipHopDancing(1)")
 	# Add the gravity.
 	if not is_on_floor() && gravity:
 		velocity += get_gravity() * delta
@@ -90,20 +94,20 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		ani.play("Jump")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		if speed == walk_speed: 
-			ani.play("Walk")
-		else:
-			ani.play("Run")
+		if speed == walk_speed && ani.current_animation == "": 
+			ani.play("StrutWalking")
+		elif ani.current_animation == "":
+			ani.play("StrutWalking")
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:
-		ani.play("Idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
@@ -122,6 +126,7 @@ func _physics_process(delta: float) -> void:
 		FOV_change = 1.0
 	if Input.is_action_just_pressed("gravity"):
 		gravity = false
+		ani.play("Floating")
 		#print(self.gravity)
 		#self.gravity = Vector3(0, -1, 0)
 		##(0, -9.8, 0)
@@ -215,16 +220,28 @@ func headbob(time):
 
 func toggle_camera_parent():
 	var parent = "Head"
+	var ignore = false
 	if first_person:
 		parent = "SpringArm3D"
-		#TODO: model visible
+		first_person = !first_person
+		sper = true
+		model.visible = !first_person 
+		self.get_child(5).rotate(self.global_position.normalized(), PI)
+		
+		#TODO: model visible'
+	elif sper:
+		parent = "SpringArm3D"
+		sper = false
+		self.get_node(parent).rotate(self.global_position.normalized(), -PI)
+		ignore = true
 	var child = camera
 	child.get_parent().remove_child(child)
 	#child.reparent(parent)
 	get_node(parent).add_child(child)
 	camera = child
-	if not first_person:
+	print(first_person, " ", sper)
+	if not first_person and not sper and not ignore:
 		camera.position = cam_pos
 		#TODO: model invisible
-	first_person = !first_person
-	model.visible = !first_person
+		model.visible = first_person
+		first_person = !first_person
