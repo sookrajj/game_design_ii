@@ -47,6 +47,7 @@ var dmg_shader = preload("res://Assets/Shaders/take_damage.tres")
 var gravity = true
 var equipped = "chipper"
 @onready var choose = $choose_club
+var curball
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -68,6 +69,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if ballpos == Vector3(0, 10, 0) && get_tree().get_node_count_in_group("interact") != 0 :
 		ballpos = get_tree().get_first_node_in_group("interact").global_position
+	if curball != get_tree().get_first_node_in_group("interact"):
+		curball = get_tree().get_first_node_in_group("interact")
 	if equipped != Glob.current:
 		equipped = Glob.current
 		push = pushes[equipped]
@@ -181,14 +184,15 @@ func _physics_process(delta: float) -> void:
 		else:
 			push /= 2
 	if Input.is_action_just_pressed("bigify"):
-		if scale < Vector3(100, 100, 100):
-			self.scale *= 10
-			self.speed *= 10
-			self.position += Vector3(0, self.scale.y/2, 0)
+		if curball.scale < Vector3(100, 100, 100):
+			print(curball.scale)
+			curball.scale *= 2
+			print(curball.scale)
+			curball.position += Vector3(0, self.scale.y/2, 0)
 	if Input.is_action_just_pressed("smallify"):
 		if scale > Vector3(0.01, 0.01, 0.01):
-			self.scale /= 10
-			self.speed /= 10
+			curball.scale /= 2
+			print(curball.scale)
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 
@@ -221,18 +225,18 @@ func headbob(time):
 func toggle_camera_parent():
 	var parent = "Head"
 	var ignore = false
+	#camera_arm.position = spring_pos
 	if first_person:
 		parent = "SpringArm3D"
 		first_person = !first_person
 		sper = true
 		model.visible = !first_person 
-		self.get_child(5).rotate(self.global_position.normalized(), PI)
-		
+		self.get_node(parent).rotate(self.global_position.normalized(), deg_to_rad(180))
 		#TODO: model visible'
 	elif sper:
 		parent = "SpringArm3D"
 		sper = false
-		self.get_node(parent).rotate(self.global_position.normalized(), -PI)
+		self.get_node(parent).rotate(self.global_position.normalized(), deg_to_rad(180))
 		ignore = true
 	var child = camera
 	child.get_parent().remove_child(child)

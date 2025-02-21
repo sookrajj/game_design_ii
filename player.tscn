@@ -11,17 +11,18 @@
 material = SubResource("StandardMaterial3D_msuf5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfvlk"]
-height = 1.5
+radius = 0.355535
+height = 1.80345
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xki7p"]
-height = 2.29087
-radius = 0.613096
+height = 0.871521
+radius = 0.338583
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_hkd6f")
 
 [node name="AuxScene" parent="." instance=ExtResource("2_r6see")]
-transform = Transform3D(-0.02, 0, 3.01992e-09, 0, 0.02, 0, -3.01992e-09, 0, -0.02, 0, 0, 0)
+transform = Transform3D(-0.01, 0, 1.50996e-09, 0, 0.01, 0, -1.50996e-09, 0, -0.01, 0, 0, 0)
 
 [node name="Skeleton3D" parent="AuxScene/Node" index="1"]
 bones/0/position = Vector3(0.888135, 128.27, -1.30926)
@@ -89,7 +90,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_yr7rr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101326, 0.225774, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0849341, 0.417617, 0)
 shape = SubResource("CapsuleShape3D_lfvlk")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
@@ -107,7 +108,7 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.630139, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0180211, -0.275445, 0.000204802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0682892, 0.427522, 0.000204802)
 shape = SubResource("CylinderShape3D_xki7p")
 
 [editable path="AuxScene"]
