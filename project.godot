@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 
 Glob="*res://glob.gd"
 
+[editor]
+
+movie_writer/mjpeg_quality=0.15
+movie_writer/movie_file="C:/Users/sookraj.j/Desktop/game_design_ii/Assets/cut_scenes/cut_scene_1.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
