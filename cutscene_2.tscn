@@ -86,7 +86,7 @@ tracks/2/keys = {
 tracks/3/type = "animation"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Other_danci2/AuxScene/AnimationPlayer")
+tracks/3/path = NodePath("Other_danci/AuxScene/Other_danci2/AuxScene/AnimationPlayer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -292,10 +292,10 @@ bones/69/rotation = Quaternion(-0.750114, -0.0987683, -0.0140335, 0.653741)
 bones/70/rotation = Quaternion(0.679376, 0.0180854, 0.104661, 0.726063)
 bones/71/rotation = Quaternion(0.472582, 2.46364e-08, 7.51636e-07, 0.881287)
 
-[node name="Other_danci2" parent="." instance=ExtResource("2_p4gwv")]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, -6.85673, 1.69511, -7.58279)
+[node name="Other_danci2" parent="Other_danci/AuxScene" index="1" instance=ExtResource("2_p4gwv")]
+transform = Transform3D(10, 0, 2.84217e-14, 0, 10, 0, -2.84217e-14, 0, 10, 156.228, 0, -123.355)
 
-[node name="Skeleton3D" parent="Other_danci2/AuxScene/Node" index="0"]
+[node name="Skeleton3D" parent="Other_danci/AuxScene/Other_danci2/AuxScene/Node" index="0"]
 bones/0/position = Vector3(1.33139, 75.1014, 3.82082)
 bones/0/rotation = Quaternion(-0.0548963, -0.0346757, -0.0169993, 0.997745)
 bones/1/rotation = Quaternion(0.19379, 0.0430558, 0.0222302, 0.979846)
@@ -810,8 +810,8 @@ autoplay = "danceoff"
 
 [editable path="Other_danci"]
 [editable path="Other_danci/AuxScene"]
-[editable path="Other_danci2"]
-[editable path="Other_danci2/AuxScene"]
+[editable path="Other_danci/AuxScene/Other_danci2"]
+[editable path="Other_danci/AuxScene/Other_danci2/AuxScene"]
 [editable path="Other_danci3"]
 [editable path="Other_danci3/AuxScene"]
 [editable path="Other_danci4"]

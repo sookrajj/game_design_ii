@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://sjv3k55qrnk"]
+
+[ext_resource type="Script" path="res://Assets/models/mouse/mouse_player.gd" id="1_x552f"]
+[ext_resource type="PackedScene" uid="uid://dkwpg4s47vtcv" path="res://Assets/models/mouse/cac-1741101861461.gltf" id="2_j0wth"]
+
+[node name="MousePlayer" type="CharacterBody3D"]
+script = ExtResource("1_x552f")
+
+[node name="AuxScene" parent="." instance=ExtResource("2_j0wth")]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)

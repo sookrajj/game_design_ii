@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://eyewh4c5ilr3"]
+
+[ext_resource type="PackedScene" uid="uid://uqexk2edq1qm" path="res://Assets/cut_scenes/cutscene_3/peach_castle.glb" id="1_67kyg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h885a"]
+sky_top_color = Color(0.396571, 0.432506, 0.634793, 1)
+sky_horizon_color = Color(0.649143, 0.650376, 0.691948, 1)
+ground_horizon_color = Color(0.649143, 0.650376, 0.691948, 1)
+
+[sub_resource type="Sky" id="Sky_s17mw"]
+sky_material = SubResource("ProceduralSkyMaterial_h885a")
+
+[sub_resource type="Environment" id="Environment_2mdij"]
+background_mode = 2
+sky = SubResource("Sky_s17mw")
+tonemap_mode = 2
+
+[node name="Cutscene_3" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2mdij")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.852687, 0.858702, 0.228505, 1)
+shadow_enabled = true
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_67kyg")]
+
+[editable path="Sketchfab_Scene"]
