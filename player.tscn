@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cy0d5tbw3bnwa"]
 
-[ext_resource type="Script" path="res://character_body_3d.gd" id="1_hkd6f"]
+[ext_resource type="Script" uid="uid://bt1p73jns2u0i" path="res://character_body_3d.gd" id="1_hkd6f"]
 [ext_resource type="PackedScene" uid="uid://csj5a3ubcnxaa" path="res://player_hud_3d.tscn" id="2_c2bnr"]
 [ext_resource type="PackedScene" uid="uid://pcwk00ys4eew" path="res://choose_club.tscn" id="2_oe3v8"]
 [ext_resource type="PackedScene" uid="uid://hc3k5c6wn1ox" path="res://Assets/models/the_don/cac-1740063639154.gltf" id="2_r6see"]

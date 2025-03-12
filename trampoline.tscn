@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg2sy0m7sk0cq"]
 
-[ext_resource type="Script" path="res://trampoline.gd" id="1_swtir"]
+[ext_resource type="Script" uid="uid://dm0vu5ncqn6gj" path="res://trampoline.gd" id="1_swtir"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3s1k4"]
 size = Vector3(3.39783, 0.127441, 2.5329)

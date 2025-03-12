@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://sjv3k55qrnk"]
 
-[ext_resource type="Script" path="res://Assets/models/mouse/mouse_player.gd" id="1_x552f"]
+[ext_resource type="Script" uid="uid://dksiw6gbtwlpk" path="res://Assets/models/mouse/mouse_player.gd" id="1_x552f"]
 [ext_resource type="PackedScene" uid="uid://dkwpg4s47vtcv" path="res://Assets/models/mouse/cac-1741101861461.gltf" id="2_j0wth"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wj86w"]

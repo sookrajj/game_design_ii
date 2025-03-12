@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://eyewh4c5ilr3"]
 
 [ext_resource type="PackedScene" uid="uid://uqexk2edq1qm" path="res://Assets/cut_scenes/cutscene_3/peach_castle.glb" id="1_67kyg"]
-[ext_resource type="Script" path="res://cutscene_3.gd" id="1_ts630"]
+[ext_resource type="Script" uid="uid://63yr0c0005to" path="res://cutscene_3.gd" id="1_ts630"]
 [ext_resource type="PackedScene" uid="uid://cr22pf23khyp2" path="res://Assets/models/blue_guy/cac-1741102009323.gltf" id="2_0fb7l"]
 [ext_resource type="PackedScene" uid="uid://sjv3k55qrnk" path="res://Assets/models/mouse/mouse_player.tscn" id="2_igd7w"]
 
@@ -182,8 +182,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ui5yg"]
 _data = {
-"RESET": SubResource("Animation_a77q3"),
-"scene": SubResource("Animation_76ojv")
+&"RESET": SubResource("Animation_a77q3"),
+&"scene": SubResource("Animation_76ojv")
 }
 
 [node name="Cutscene_3" type="Node3D"]

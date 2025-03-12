@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dkbbo3ya7o8wh"]
 
 [ext_resource type="PackedScene" uid="uid://blg2gukmam6yv" path="res://Assets/cut_scenes/cutscene_2/abandoned_warehouse_-_interior_scene.glb" id="1_sjhff"]
-[ext_resource type="Script" path="res://cutscene_2.gd" id="1_v5xti"]
+[ext_resource type="Script" uid="uid://dnupuqwpmejts" path="res://cutscene_2.gd" id="1_v5xti"]
 [ext_resource type="PackedScene" uid="uid://bwsc70hsv8tqh" path="res://other_danci.tscn" id="2_p4gwv"]
 [ext_resource type="PackedScene" uid="uid://cwvaq8rkq3xbb" path="res://dancing_mutant.tscn" id="3_j7jgk"]
 
@@ -216,8 +216,8 @@ tracks/15/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_er1b1"]
 _data = {
-"RESET": SubResource("Animation_mqphc"),
-"danceoff": SubResource("Animation_ygtuq")
+&"RESET": SubResource("Animation_mqphc"),
+&"danceoff": SubResource("Animation_ygtuq")
 }
 
 [node name="Cutscene_2" type="Node3D"]

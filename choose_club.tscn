@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pcwk00ys4eew"]
 
-[ext_resource type="Script" path="res://choose_club.gd" id="1_wsnsu"]
+[ext_resource type="Script" uid="uid://c7cl8qpulgiyv" path="res://choose_club.gd" id="1_wsnsu"]
 
 [sub_resource type="Theme" id="Theme_0t34e"]
 default_font_size = 32
