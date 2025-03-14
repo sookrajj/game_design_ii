@@ -804,7 +804,7 @@ fov = 73.3755
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_er1b1")
+&"": SubResource("AnimationLibrary_er1b1")
 }
 autoplay = "danceoff"
 

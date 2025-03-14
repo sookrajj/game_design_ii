@@ -245,7 +245,7 @@ fov = 93.9196
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jir8m")
+&"": SubResource("AnimationLibrary_jir8m")
 }
 autoplay = "scene_1"
 
