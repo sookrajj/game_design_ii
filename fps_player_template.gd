@@ -41,7 +41,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire"):
 		do_fire()
 	spray_lock = max(spray_lock-delta, 0);
 	
@@ -115,8 +115,8 @@ func headbob(time):
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	blaster = $Head/Camera3d/blaster
-	muzzle = $Head/Camera3d/blaster/muzzle
+	blaster = $Head/Camera3D/blaster
+	muzzle = $Head/Camera3D/blaster/muzzle
 	old_blaster_y = blaster.position.y
 	
 
@@ -129,12 +129,12 @@ func _unhandled_input(event):
 
 
 func do_fire():
-	if spray_lock == 0.0:
-		var bullet = dart.instantiate();
-		add_child(dart);
-		var spr = spray;
-		if not is_on_floor():
-			spr *= randf_range(1.5, 5);
-		dart.do_fire(camera, muzzle, spray, attack);
-		# TODO ammo - 1;
-		spray_lock = fire_delay;
+	if true:
+			var bullet = dart.instantiate();
+			add_child(bullet);
+			var spr = spray;
+			if not is_on_floor():
+				spr *= randf_range(1.5, 5);
+			bullet.do_fire(camera, muzzle, spray, attack);
+			# TODO ammo - 1;
+			spray_lock = fire_delay;

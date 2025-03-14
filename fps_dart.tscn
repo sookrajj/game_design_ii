@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://jc8xarf87eao"]
+[gd_scene load_steps=5 format=3 uid="uid://jc8xarf87eao"]
 
 [ext_resource type="Script" uid="uid://bux50ddb1aaih" path="res://fps_dart.gd" id="1_gylib"]
 
@@ -8,6 +8,9 @@ albedo_color = Color(0.403903, 8.42288e-07, 9.62615e-08, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pdg0w"]
 height = 0.095
 radius = 0.02
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gylib"]
+radius = 1.02071
 
 [node name="fps_dart" type="RigidBody3D"]
 script = ExtResource("1_gylib")
@@ -27,5 +30,10 @@ shape = SubResource("CylinderShape3D_pdg0w")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="homing" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="homing"]
+shape = SubResource("SphereShape3D_gylib")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

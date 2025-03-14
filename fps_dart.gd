@@ -19,7 +19,6 @@ func _physics_process(delta: float) -> void:
 	linear_velocity.y -= grav * delta;
 	do_damage("Player");
 	do_damage("Enemy");
-	
 
 
 func do_damage(group):
@@ -39,8 +38,16 @@ func do_fire(camera, muzzle, spray, damage=dmg):
 	var cam_forward = camera.global_transform.basis.z.normalized();
 	var rnd_x = randf_range(-1, 1) * spray;
 	var rnd_y = randf_range(-1, 1) * spray;
-	var spray_dir = Vector3(camera.global_transform.basis.x*rnd_x, camera.global_transform.basis.y * rnd_y, cam_forward)
+	var spray_dir = camera.global_transform.basis.x*rnd_x + camera.global_transform.basis.y * rnd_y + cam_forward
 	self.global_transform.origin = muzzle.global_transform.origin
-	self.linear_velocity = -spray_dir.normalized() * speed
+	var home;
+	for entity in get_tree().get_nodes_in_group("Enemy"):
+		if $homing.overlaps_body(entity):
+			home = entity;
+			
+	if home != null :
+		self.linear_velocity = home.normalized() * speed
+	else :
+		self.linear_velocity = -spray_dir.normalized() * speed
 	
 	

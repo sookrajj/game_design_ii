@@ -1,12 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvmkxlqug8qnl"]
+[gd_scene load_steps=7 format=3 uid="uid://bvmkxlqug8qnl"]
 
 [ext_resource type="PackedScene" uid="uid://d2hv3elprw2ee" path="res://fps_player_template.tscn" id="2_3mhlr"]
 [ext_resource type="PackedScene" uid="uid://caag3jxiuftbk" path="res://de_dust_2.tscn" id="2_j4gdr"]
+[ext_resource type="PackedScene" uid="uid://c1i4665nmhwax" path="res://fps_enemy_template.tscn" id="3_j4gdr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j4gdr"]
+sky_top_color = Color(0.396571, 0.432506, 0.634793, 1)
+sky_horizon_color = Color(0.659477, 0.660711, 0.702283, 1)
+ground_horizon_color = Color(0.659477, 0.660711, 0.702283, 1)
+
+[sub_resource type="Sky" id="Sky_ssx6f"]
+sky_material = SubResource("ProceduralSkyMaterial_j4gdr")
+
+[sub_resource type="Environment" id="Environment_2dtwi"]
+background_mode = 2
+sky = SubResource("Sky_ssx6f")
+tonemap_mode = 2
 
 [node name="Fpsworld1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2dtwi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.852687, 0.858702, 0.228505, 1)
+light_energy = 46.1
+shadow_enabled = true
 
 [node name="fps_player" parent="." instance=ExtResource("2_3mhlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42847, 3.32794, 26.2104)
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("2_j4gdr")]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -4.31924, -0.844324, 7.85045)
+
+[node name="fps_enemy" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1773, 2.91203, -18.7938)
+
+[node name="fps_enemy2" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 7.75655)
+
+[node name="fps_enemy3" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 5.00009)
+
+[node name="fps_enemy4" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 10.5725)
+
+[node name="fps_enemy5" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 13.1512)
+
+[node name="fps_enemy6" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 13.1512)
+
+[node name="fps_enemy7" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 10.564)
+
+[node name="fps_enemy8" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 7.84799)
+
+[node name="fps_enemy9" parent="." instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 5.12418)
