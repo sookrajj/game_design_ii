@@ -39,28 +39,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1773, 2.91203, -18.7938)
 
 [node name="enemy_group" type="Node3D" parent="."]
 
-[node name="fps_enemy9" parent="enemy_group" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 5.12418)
-
 [node name="fps_enemy8" parent="enemy_group" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 7.84799)
 
 [node name="fps_enemy7" parent="enemy_group" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 10.564)
 
-[node name="fps_enemy6" parent="enemy_group" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 13.1512)
-
-[node name="fps_enemy5" parent="enemy_group" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 13.1512)
-
-[node name="fps_enemy4" parent="enemy_group" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 10.5725)
-
-[node name="fps_enemy3" parent="enemy_group" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 5.00009)
-
 [node name="fps_enemy2" parent="enemy_group" instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 7.75655)
+
+[node name="enemy_group4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7098, 0, -69.549)
+
+[node name="fps_enemy8" parent="enemy_group4" instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 7.84799)
+
+[node name="fps_enemy7" parent="enemy_group4" instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 10.564)
+
+[node name="fps_enemy2" parent="enemy_group4" instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 7.75655)
+
+[node name="enemy_group5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.4995, 0.836866, -65.1306)
+
+[node name="fps_enemy8" parent="enemy_group5" instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 7.84799)
+
+[node name="fps_enemy7" parent="enemy_group5" instance=ExtResource("3_j4gdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 10.564)
+
+[node name="fps_enemy2" parent="enemy_group5" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 7.75655)
 
 [node name="enemy_group2" type="Node3D" parent="."]
@@ -69,47 +78,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.1726, 2.40041, -16.7977)
 [node name="fps_enemy9" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 5.12418)
 
-[node name="fps_enemy8" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 7.84799)
-
-[node name="fps_enemy7" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 10.564)
-
-[node name="fps_enemy6" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 13.1512)
-
-[node name="fps_enemy5" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 13.1512)
-
-[node name="fps_enemy4" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 10.5725)
-
 [node name="fps_enemy3" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 5.00009)
-
-[node name="fps_enemy2" parent="enemy_group2" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 7.75655)
 
 [node name="enemy_group3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.7863, 4.73881, 20.4824)
 
-[node name="fps_enemy9" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 5.12418)
-
-[node name="fps_enemy8" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 7.84799)
-
-[node name="fps_enemy7" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 10.564)
-
-[node name="fps_enemy6" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2412, 0.155676, 13.1512)
-
 [node name="fps_enemy5" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 13.1512)
-
-[node name="fps_enemy4" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 10.5725)
 
 [node name="fps_enemy3" parent="enemy_group3" instance=ExtResource("3_j4gdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32846, 0.155676, 5.00009)

@@ -26,9 +26,9 @@ var attack = 5.0;
 var knockback = 10.0;
 
 
-var ammo = 30;
-var clip_size = 30;
-var tot_ammo = 150;
+var ammo = 10;
+var clip_size = 10;
+var tot_ammo = 100;
 var is_reloading = false;
 
 var norm_ht = 2.0;
@@ -43,13 +43,22 @@ var CAM_SENSITIVITY = 0.02
 const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0.0
-
+var unaim_pos = Vector3(0.219, -0.27, -0.421)
+var aim_pos = Vector3(0, -0.14, -0.511)
+var unaim_fov = 75.0;
+var aim_fov = 45.0;
+var unaim_quat = euler_degrees_to_quat(Vector3(28.1, 31.7, 0))
+var aim_quat = euler_degrees_to_quat(Vector3(11.6, 0, 0))
+var target_pos = unaim_pos
+var target_quat = unaim_quat
+var target_fov = unaim_fov
 
 var damage_shader = preload("res://assets/shaders/take_damage.tres")
 @onready var head = $Head
 
 
 func _physics_process(delta):
+	print(HEALTH)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -70,14 +79,33 @@ func _physics_process(delta):
 			tot_ammo -= new_ammo
 		
 			is_reloading = false
-	
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	var hbob = headbob(t_bob)
 	#TODO HUD
-	#TODO aiming sight
+	
+	if Input.is_action_just_pressed("aim_sight"):
+		target_pos = aim_pos
+		target_fov = aim_fov
+		target_quat = aim_quat
+		spray = crouchspray
+	
+	if Input.is_action_just_released("aim_sight"):
+		target_pos = unaim_pos
+		target_fov = unaim_fov
+		target_quat = unaim_quat
+		spray = normspray
+	$Head/Camera3D.fov = lerp($Head/Camera3D.fov, target_fov, delta*5.0)
+	blaster.position = blaster.position.lerp(target_pos, delta*10.0)
+	blaster.position.y = clamp(old_blaster_y + (hbob.y*0.05 if is_on_floor() else 0), old_blaster_y-0.5, old_blaster_y+0.5)
+	var cur_quat = euler_degrees_to_quat(blaster.rotation_degrees)
+	blaster.rotation_degrees = radians_to_degrees(cur_quat.slerp(target_quat, delta*10.0).get_euler())
+	
 	
 	if Input.is_action_just_pressed("crouch"):
 		$CollisionShape3D.shape.height = crouch_ht + 0.05
 		$CollisionShape3D.shape.radius = crouch_col_rad
 		$MeshInstance3D.scale.y = crouch_ht/ norm_ht
+		SPEED = WALK_SPEED
 		head.position.y = lerp(head.position.y, crouch_head, delta * 5.0)
 		spray = crouchspray
 	
@@ -85,6 +113,7 @@ func _physics_process(delta):
 		$CollisionShape3D.shape.height = norm_ht + 0.05
 		$CollisionShape3D.shape.radius = norm_col_rad
 		$MeshInstance3D.scale.y = 1
+		SPEED = 3 * WALK_SPEED
 		head.position.y = lerp(head.position.y, norm_head, delta * 5.0)
 		spray = normspray
 	
@@ -113,8 +142,7 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	var hbob = headbob(t_bob)
+	
 	camera.transform.origin = hbob 
 	
 	damage_lock = max(damage_lock-delta, 0.0)
@@ -180,17 +208,35 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * (CAM_SENSITIVITY / 10.0))
 	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))
 
+func degrees_to_radians(degrees: Vector3) -> Vector3:
+	return Vector3(
+		deg_to_rad(degrees.x),
+		deg_to_rad(degrees.y),
+		deg_to_rad(degrees.z)
+	)
+
+
+func radians_to_degrees(radians: Vector3) -> Vector3:
+	return Vector3(
+		rad_to_deg(radians.x),
+		rad_to_deg(radians.y),
+		rad_to_deg(radians.z)
+	)
+
+
+func euler_degrees_to_quat(euler_degrees: Vector3) -> Quaternion:
+	return Quaternion.from_euler(degrees_to_radians(euler_degrees))
 
 func do_fire():
 	if spray_lock == 0.0 and ammo > 0:
 		ammo -= 1
-		for lcv in range(25):
-			var bullet = dart.instantiate();
-			get_parent().add_child(bullet);
-			var spr = spray;
-			if not is_on_floor():
-				spr *= randf_range(1.5, 5);
-			bullet.do_fire(camera, muzzle, spray, attack);
-			
-			spray_lock = fire_delay;
-		self.global_position = lerp(self.global_position, self.global_position-(Vector3(blaster.global_position.x-self.global_position.x, 0, blaster.global_position.z-self.global_position.z) * knockback), 0.1)
+		#for lcv in range(25):
+		var bullet = dart.instantiate();
+		get_parent().add_child(bullet);
+		var spr = spray;
+		if not is_on_floor():
+			spr *= randf_range(1.5, 5);
+		bullet.do_fire(camera, muzzle, spray, 1000);
+		print(HEALTH)
+		spray_lock = fire_delay;
+		#self.global_position = lerp(self.global_position, self.global_position-(Vector3(blaster.global_position.x-self.global_position.x, 0, blaster.global_position.z-self.global_position.z) * knockback), 0.1)

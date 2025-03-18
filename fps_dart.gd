@@ -38,13 +38,13 @@ func do_fire(camera, muzzle, spray, damage=dmg):
 	var cam_forward = camera.global_transform.basis.z.normalized();
 	var rnd_x = randf_range(-1, 1) * spray;
 	var rnd_y = randf_range(-1, 1) * spray;
-	var spray_dir = camera.global_transform.basis.x*rnd_x + camera.global_transform.basis.y * rnd_y + cam_forward
+	var spray_dir = camera.global_transform.basis.x*rnd_x + camera.global_transform.basis.y*rnd_y + cam_forward
 	self.global_transform.origin = muzzle.global_transform.origin
 	var home;
-	for entity in get_tree().get_nodes_in_group("Enemy"):
-		if $homing.overlaps_body(entity):
-			home = entity;
-			
+	#for entity in get_tree().get_nodes_in_group("Enemy"):
+		#if $homing.overlaps_body(entity):
+			#home = entity;
+			#
 	if home != null :
 		self.linear_velocity = home.normalized() * speed
 	else :
