@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2hv3elprw2ee"]
+[gd_scene load_steps=9 format=3 uid="uid://d2hv3elprw2ee"]
 
 [ext_resource type="Script" uid="uid://dd0xxvs8rgl2u" path="res://fps_player_template.gd" id="1_uw4s0"]
 
@@ -15,6 +15,14 @@ albedo_color = Color(1, 0.207843, 0.054902, 1)
 metallic = 1.0
 metallic_specular = 1.0
 
+[sub_resource type="Theme" id="Theme_uw4s0"]
+default_font_size = 38
+
+[sub_resource type="Theme" id="Theme_rsyyf"]
+default_font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_rhm07"]
+
 [node name="fps_player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_uw4s0")
 
@@ -22,6 +30,7 @@ script = ExtResource("1_uw4s0")
 mesh = SubResource("CapsuleMesh_s15q6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405269, 0)
 shape = SubResource("CapsuleShape3D_swrap")
 
 [node name="Head" type="Node3D" parent="."]
@@ -41,3 +50,64 @@ transform = Transform3D(1, 2.32831e-10, 5.82077e-11, 1.16415e-10, -2.98023e-08, 
 radius = 0.0568142
 height = 0.14681
 material = SubResource("StandardMaterial3D_aak7c")
+
+[node name="HUD" type="Control" parent="." groups=["Hud"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 646.0
+
+[node name="overlay" type="ColorRect" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HUD"]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 68.0
+theme = SubResource("Theme_uw4s0")
+text = "Health: "
+
+[node name="lblHealth" type="Label" parent="HUD/Label"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 2.0
+offset_right = 277.0
+offset_bottom = 55.0
+text = "100/100"
+
+[node name="Label2" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 898.0
+offset_top = 3.0
+offset_right = 1032.0
+offset_bottom = 53.0
+theme = SubResource("Theme_rsyyf")
+text = "Ammo: "
+
+[node name="lblAmmo" type="Label" parent="HUD/Label2"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 3.0
+offset_right = 262.0
+offset_bottom = 53.0
+text = "0/0"
+
+[node name="Crosshair" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -613.0
+offset_top = -338.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "+"
+label_settings = SubResource("LabelSettings_rhm07")

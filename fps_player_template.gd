@@ -53,8 +53,11 @@ var target_pos = unaim_pos
 var target_quat = unaim_quat
 var target_fov = unaim_fov
 
+var PUSH_FORCE = 25.0
+
 var damage_shader = preload("res://assets/shaders/take_damage.tres")
 @onready var head = $Head
+
 
 
 func _physics_process(delta):
@@ -151,6 +154,11 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	$HUD/Label/lblHealth.text = "%d/%d" % [int(HEALTH), MAX_HEALTH]
+	$HUD/Label2/lblAmmo.text  = "%d/%d" % [int(ammo), tot_ammo]
+	if damage_lock == 0.0:
+		$HUD/overlay.material = null
+	
 	if int(HEALTH) <= 0:
 		HEALTH = 0
 		await get_tree().create_timer(0.25).timeout
@@ -175,6 +183,12 @@ func _physics_process(delta):
 	if abs(rstick_v) > deadzone:
 		camera.rotate_x(-rstick_v * delta * (CAM_SENSITIVITY*75))
 	
+	for i in range(get_slide_collision_count()):
+		var c = get_slide_collision(i)
+		var col = c.get_collider()
+		if col is RigidBody3D and col.is_in_group("Interact") and is_on_floor():
+			col.apply_central_force(-c.get_normal() * PUSH_FORCE)
+	
 	pass
 
 
@@ -182,9 +196,14 @@ func take_damage(dmg, override=false, headshot=false, _spawn_origin=null):
 	if damage_lock == 0.0 or override:
 		damage_lock = 0.5
 		HEALTH -= dmg
-		#var dmg_intensity =s clamp(1.0-((HEALTH+0.01)/MAX_HEALTH), 0.1, 0.8)
-		#$HUD/overlay.material = damage_shader.duplicate()
-		#$HUD/overlay.material.set_shader_parameter("intensity", dmg_intensity)
+		var dmg_intensity = clamp(1.0-((HEALTH+0.01)/MAX_HEALTH), 0.1, 0.8)
+		$HUD/Overlay.material = damage_shader.duplicate()
+		$HUD/Overlay.material.set_shader_parameter("intensity", dmg_intensity)
+		if HEALTH <= 0:
+			await get_tree().create_timer(0.25).timeout
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			OS.alert("You died!")
+			get_tree().reload_current_scene()
 
 
 func headbob(time):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dktxerp7i8wfq"]
+[gd_scene load_steps=23 format=3 uid="uid://dktxerp7i8wfq"]
 
 [ext_resource type="PackedScene" uid="uid://c3as27r7egrgp" path="res://FPSWorld2/cs_office_with_real_light.glb" id="1_punww"]
 
@@ -60,6 +60,9 @@ left_to_right = 2.0
 left_to_right = 2.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_a1whm"]
+left_to_right = -2.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_jkh3w"]
 left_to_right = -2.0
 
 [node name="CS_Office" instance=ExtResource("1_punww")]
@@ -183,5 +186,16 @@ visible = false
 mesh = SubResource("PrismMesh_l82fx")
 
 [node name="CSGMesh3D9" type="CSGMesh3D" parent="." index="9"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.6084, -13.8328, 28.7086)
+transform = Transform3D(-8.38728e-08, 0, -2.6126, 0, 1.43345, 0, 1.91878, 0, -1.142e-07, 10.6084, -14.0707, 31.0371)
+visible = false
 mesh = SubResource("PrismMesh_a1whm")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="." index="10"]
+transform = Transform3D(-6.03521e-08, 0, -3.48268, 0, 1.38719, 0, 1.3807, 0, -1.52233e-07, 10.6236, -12.6374, 17.9531)
+visible = false
+mesh = SubResource("PrismMesh_jkh3w")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="." index="11"]
+transform = Transform3D(-1.69477, 0, 3.04466e-07, 0, 1.63776, 0, -1.48162e-07, 0, -3.48268, 13.2265, -11.148, 8.77267)
+visible = false
+mesh = SubResource("PrismMesh_jkh3w")
