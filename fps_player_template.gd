@@ -61,7 +61,6 @@ var damage_shader = preload("res://assets/shaders/take_damage.tres")
 
 
 func _physics_process(delta):
-	print(HEALTH)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -70,7 +69,7 @@ func _physics_process(delta):
 		do_fire()
 	spray_lock = max(spray_lock-delta, 0);
 	
-	#TODO: blaster position
+	
 	if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("fire") and ammo == 0):
 		if tot_ammo > 0 and not is_reloading and ammo != clip_size:
 			is_reloading = true
@@ -183,12 +182,6 @@ func _physics_process(delta):
 	if abs(rstick_v) > deadzone:
 		camera.rotate_x(-rstick_v * delta * (CAM_SENSITIVITY*75))
 	
-	for i in range(get_slide_collision_count()):
-		var c = get_slide_collision(i)
-		var col = c.get_collider()
-		if col is RigidBody3D and col.is_in_group("Interact") and is_on_floor():
-			col.apply_central_force(-c.get_normal() * PUSH_FORCE)
-	
 	pass
 
 
@@ -197,8 +190,8 @@ func take_damage(dmg, override=false, headshot=false, _spawn_origin=null):
 		damage_lock = 0.5
 		HEALTH -= dmg
 		var dmg_intensity = clamp(1.0-((HEALTH+0.01)/MAX_HEALTH), 0.1, 0.8)
-		$HUD/Overlay.material = damage_shader.duplicate()
-		$HUD/Overlay.material.set_shader_parameter("intensity", dmg_intensity)
+		$HUD/overlay.material = damage_shader.duplicate()
+		$HUD/overlay.material.set_shader_parameter("intensity", dmg_intensity)
 		if HEALTH <= 0:
 			await get_tree().create_timer(0.25).timeout
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -256,6 +249,5 @@ func do_fire():
 		if not is_on_floor():
 			spr *= randf_range(1.5, 5);
 		bullet.do_fire(camera, muzzle, spray, 1000);
-		print(HEALTH)
 		spray_lock = fire_delay;
 		#self.global_position = lerp(self.global_position, self.global_position-(Vector3(blaster.global_position.x-self.global_position.x, 0, blaster.global_position.z-self.global_position.z) * knockback), 0.1)

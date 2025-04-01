@@ -158,6 +158,7 @@ mesh = SubResource("PrismMesh_ur46c")
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="." index="3"]
 transform = Transform3D(-1.09204e-07, 0, -3.8917, 0, 2.04593, 0, 2.4983, 0, -1.70112e-07, 2.76055, -11.3316, 8.74964)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_r1j4s")
 
 [node name="CSGMesh3D4" type="CSGMesh3D" parent="." index="4"]
@@ -173,29 +174,35 @@ mesh = SubResource("PrismMesh_1lyok")
 [node name="CSGMesh3D8" type="CSGMesh3D" parent="." index="6"]
 transform = Transform3D(-2.07869, 0, 2.96597e-07, 0, 1.39121, 0, -1.81725e-07, 0, -3.39268, 22.2, -14.0572, 22.2306)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_1lyok")
 
 [node name="CSGMesh3D6" type="CSGMesh3D" parent="." index="7"]
 transform = Transform3D(4.29259, 0, 0, 0, 2.73151, 0, 0, 0, 4.56219, -22.5085, -13.7208, 22.1009)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_l82fx")
 
 [node name="CSGMesh3D7" type="CSGMesh3D" parent="." index="8"]
 transform = Transform3D(-1.87635e-07, 0, 4.56219, 0, 2.73151, 0, -4.29259, 0, -1.9942e-07, -40.2432, -13.7208, 17.1246)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_l82fx")
 
 [node name="CSGMesh3D9" type="CSGMesh3D" parent="." index="9"]
 transform = Transform3D(-8.38728e-08, 0, -2.6126, 0, 1.43345, 0, 1.91878, 0, -1.142e-07, 10.6084, -14.0707, 31.0371)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_a1whm")
 
 [node name="CSGMesh3D10" type="CSGMesh3D" parent="." index="10"]
 transform = Transform3D(-6.03521e-08, 0, -3.48268, 0, 1.38719, 0, 1.3807, 0, -1.52233e-07, 10.6236, -12.6374, 17.9531)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_jkh3w")
 
 [node name="CSGMesh3D11" type="CSGMesh3D" parent="." index="11"]
 transform = Transform3D(-1.69477, 0, 3.04466e-07, 0, 1.63776, 0, -1.48162e-07, 0, -3.48268, 13.2265, -11.148, 8.77267)
 visible = false
+use_collision = true
 mesh = SubResource("PrismMesh_jkh3w")

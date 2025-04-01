@@ -1,16 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://51st07eohr7i"]
+[gd_scene load_steps=7 format=3 uid="uid://51st07eohr7i"]
 
 [ext_resource type="PackedScene" uid="uid://dktxerp7i8wfq" path="res://CS_Office.tscn" id="1_1xlax"]
 [ext_resource type="PackedScene" uid="uid://d2hv3elprw2ee" path="res://fps_player_template.tscn" id="2_gtcvr"]
 [ext_resource type="PackedScene" uid="uid://c1i4665nmhwax" path="res://fps_enemy_template.tscn" id="3_vkb1x"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xlax"]
+sky_top_color = Color(0.396571, 0.432506, 0.634793, 1)
+sky_horizon_color = Color(0.659477, 0.660711, 0.702283, 1)
+ground_horizon_color = Color(0.659477, 0.660711, 0.702283, 1)
+
+[sub_resource type="Sky" id="Sky_gtcvr"]
+sky_material = SubResource("ProceduralSkyMaterial_1xlax")
+
+[sub_resource type="Environment" id="Environment_vkb1x"]
+background_mode = 2
+sky = SubResource("Sky_gtcvr")
+tonemap_mode = 2
+
 [node name="FPS_World2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vkb1x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.852687, 0.858702, 0.228505, 1)
+shadow_enabled = true
 
 [node name="CS_Office" parent="." instance=ExtResource("1_1xlax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.158464, 22.4755, -0.0208147)
 
 [node name="fps_player" parent="." instance=ExtResource("2_gtcvr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1173, 8.67959, 26.4312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1173, 10.4297, 26.4312)
 
 [node name="fps_enemy" parent="." instance=ExtResource("3_vkb1x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3561, 11.5244, 8.59903)
