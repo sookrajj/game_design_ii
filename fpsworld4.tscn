@@ -20,6 +20,7 @@ tonemap_mode = 2
 
 [node name="Fpsworld4" type="Node3D"]
 script = ExtResource("1_1sqdo")
+nl = "FPS World"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aml8r")
@@ -54,3 +55,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3569, 20.1909, 2.85129)
 
 [node name="fps_enemy7" parent="." instance=ExtResource("3_aml8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.911, 20.7493, 22.7156)
+
+[node name="fps_enemy8" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.616272, 14.7024, 33.3951)
+
+[node name="fps_enemy9" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0766214, 13.417, -11.9751)
+
+[node name="fps_enemy10" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55191, 14.4467, 15.9511)
+
+[node name="fps_enemy11" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13649, 13.9515, 15.2058)
+
+[node name="fps_enemy12" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63119, 13.8238, -4.71727)
+
+[node name="fps_enemy13" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11335, 13.365, -5.19249)
+
+[node name="fps_enemy14" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61242, 18.4125, -0.218613)
+
+[node name="fps_enemy15" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87236, 18.5875, 6.13063)
+
+[node name="fps_enemy16" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2869, 18.7395, 0.758311)
+
+[node name="fps_enemy17" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33391, 19.2442, 18.2376)
+
+[node name="fps_enemy18" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72422, 18.9413, 18.2673)
+
+[node name="fps_enemy19" parent="." instance=ExtResource("3_aml8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.419504, 20.8909, 40.4891)

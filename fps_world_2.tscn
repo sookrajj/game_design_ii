@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://51st07eohr7i"]
+[gd_scene load_steps=8 format=3 uid="uid://51st07eohr7i"]
 
 [ext_resource type="PackedScene" uid="uid://dktxerp7i8wfq" path="res://CS_Office.tscn" id="1_1xlax"]
+[ext_resource type="Script" uid="uid://d1dyc01sbunpg" path="res://fps_world_2.gd" id="1_gtcvr"]
 [ext_resource type="PackedScene" uid="uid://d2hv3elprw2ee" path="res://fps_player_template.tscn" id="2_gtcvr"]
 [ext_resource type="PackedScene" uid="uid://c1i4665nmhwax" path="res://fps_enemy_template.tscn" id="3_vkb1x"]
 
@@ -18,6 +19,8 @@ sky = SubResource("Sky_gtcvr")
 tonemap_mode = 2
 
 [node name="FPS_World2" type="Node3D"]
+script = ExtResource("1_gtcvr")
+nl = "fpsw3"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vkb1x")
