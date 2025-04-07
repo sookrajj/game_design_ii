@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dps2f1w7bhgem"
+path="res://.godot/imported/Track_Bridge_Start_Flat_to_Gentle.obj-a54876b6465801d791f1e2d36e58909a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Track_Bridge_Start_Flat_to_Gentle.obj-a54876b6465801d791f1e2d36e58909a.mesh"]
+
+source_file="res://Assets/Terrains/modular_racekart_track_collection_hilly_terrain/Track_Bridge_Start_Flat_to_Gentle.obj"
+dest_files=["res://.godot/imported/Track_Bridge_Start_Flat_to_Gentle.obj-a54876b6465801d791f1e2d36e58909a.mesh", "res://.godot/imported/Track_Bridge_Start_Flat_to_Gentle.obj-a54876b6465801d791f1e2d36e58909a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
