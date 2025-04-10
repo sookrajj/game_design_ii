@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy8evu4o1o3nh"]
+[gd_scene load_steps=8 format=3 uid="uid://cy8evu4o1o3nh"]
 
 [ext_resource type="MeshLibrary" uid="uid://jgvj0mnakwei" path="res://Assets/Meshes/rc_tiles_1.tres" id="1_orelr"]
 [ext_resource type="PackedScene" uid="uid://du43mjoa7t4gb" path="res://rc_player.tscn" id="2_w7q12"]
@@ -17,7 +17,10 @@ sky = SubResource("Sky_rjgen")
 tonemap_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ihun"]
-friction = 0.51
+friction = 0.78
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w7q12"]
+size = Vector3(1000, 1, 1000)
 
 [node name="rc_world_1" type="Node3D"]
 
@@ -27,11 +30,11 @@ environment = SubResource("Environment_hy7tj")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(0.852687, 0.858702, 0.228505, 1)
-light_energy = 46.1
+light_energy = 0.889
 shadow_enabled = true
 
 [node name="GridMap" type="GridMap" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh_library = ExtResource("1_orelr")
 physics_material = SubResource("PhysicsMaterial_5ihun")
 cell_size = Vector3(1, 1, 1)
@@ -42,4 +45,13 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="rc_player" parent="." instance=ExtResource("2_w7q12")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.9948, 0, 6.755)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 53.6525, 7.40395, 18.3572)
+engine_force = 455.11
+
+[node name="deathPlane" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.2055, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathPlane"]
+shape = SubResource("BoxShape3D_w7q12")
+
+[connection signal="body_entered" from="deathPlane" to="rc_player" method="_on_death_plane_body_entered"]

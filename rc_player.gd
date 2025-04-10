@@ -3,7 +3,7 @@ extends VehicleBody3D
 const MAX_STEER = 0.4
 const MAX_RPM = 1000
 const MAX_TORQUE = 200
-const HORSE_POWER = 300
+const HORSE_POWER = 100
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -24,5 +24,20 @@ func _physics_process(delta: float) -> void:
 	$centerMass.transform = $centerMass.transform.interpolate_with(transform, delta * 5.0)
 	$centerMass/Camera3D.look_at(global_position.lerp(global_position + linear_velocity, delta * 5.0))
 	
-	#TODO: check and right
 	
+	
+	check_and_right(delta)
+	
+	
+
+func check_and_right(delta):
+	if global_transform.basis.y.dot(Vector3.UP) < 0:
+		
+			var currot = self.rotation_degrees
+			currot.x = min(currot.x - delta * 10.0, currot.x + delta * 10.0)
+			currot.z = min(currot.z - delta * 10.0, currot.z + delta * 10.0)
+			self.rotation_degrees = currot
+
+
+func _on_death_plane_body_entered(body: Node3D) -> void:
+	get_tree().reload_current_scene()

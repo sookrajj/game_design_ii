@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://du43mjoa7t4gb"]
-
-[ext_resource type="Script" uid="uid://bgndds4m4j44j" path="res://rc_player.gd" id="1_nqw02"]
+[gd_scene load_steps=12 format=4 uid="uid://bdp1w74owtpow"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rjvf"]
 resource_name = "paintRed"
-albedo_color = Color(1, 0.227451, 0.360134, 1)
+albedo_color = Color(0.274466, 0.559853, 1, 1)
 metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uahrm"]
@@ -214,27 +212,22 @@ metadata/extras = {
 "targetNames": []
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_gej51"]
-font_size = 32
-
-[node name="rc_player" type="VehicleBody3D"]
-gravity_scale = 2.025
-script = ExtResource("1_nqw02")
+[node name="rc_enemy" type="VehicleBody3D"]
 
 [node name="body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34997e-13, 0.21247, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34997e-13, 0.1, 0)
 mesh = SubResource("ArrayMesh_6pb5k")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34997e-13, 0.215607, -0.00344014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34997e-13, 0.1, 0.00643528)
 shape = SubResource("ConvexPolygonShape3D_7jlj3")
 
 [node name="backRight" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.50805, 0.3, 0.881028)
 use_as_traction = true
 wheel_radius = 0.3
-wheel_friction_slip = 20.0
+wheel_friction_slip = 9.0
 
 [node name="wheel_backRight" type="MeshInstance3D" parent="backRight"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.15805, 0, 0.000914693)
@@ -245,7 +238,7 @@ skeleton = NodePath("")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0.3, 0.879298)
 use_as_traction = true
 wheel_radius = 0.3
-wheel_friction_slip = 20.0
+wheel_friction_slip = 9.0
 
 [node name="wheel_backLeft" type="MeshInstance3D" parent="backLeft"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -0.15, 0, -0.000815511)
@@ -256,7 +249,6 @@ skeleton = NodePath("")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.50805, 0.3, -0.641348)
 use_as_steering = true
 wheel_radius = 0.3
-wheel_friction_slip = 25.0
 
 [node name="wheel_frontRight" type="MeshInstance3D" parent="frontRight"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.15805, 0, -0.00146192)
@@ -267,7 +259,6 @@ skeleton = NodePath("")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0.3, -0.641348)
 use_as_steering = true
 wheel_radius = 0.3
-wheel_friction_slip = 25.0
 
 [node name="wheel_frontLeft" type="MeshInstance3D" parent="frontLeft"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -0.15, 0, -0.00146192)
@@ -278,15 +269,22 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
 top_level = true
 
-[node name="Camera3D" type="Camera3D" parent="centerMass"]
-transform = Transform3D(1, 0, 0, 0, 0.97237, 0.233445, 0, -0.233445, 0.97237, 0, 1.6, 4)
+[node name="rfor" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.3, 0)
+target_position = Vector3(0, -5, 0)
 
-[node name="Speed" type="Label" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -50.0
-offset_right = 174.0
-grow_vertical = 0
-text = "0 mph"
-label_settings = SubResource("LabelSettings_gej51")
+[node name="rright" type="RayCast3D" parent="."]
+transform = Transform3D(0.258819, -0.965926, 4.2222e-08, 0, -4.37114e-08, -1, 0.965926, 0.258819, -1.13133e-08, 0, 0.3, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="rleft" type="RayCast3D" parent="."]
+transform = Transform3D(0.258819, 0.965926, -4.2222e-08, 0, -4.37114e-08, -1, -0.965926, 0.258819, -1.13133e-08, 0, 0.3, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="rforright" type="RayCast3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.3, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="rforleft" type="RayCast3D" parent="."]
+transform = Transform3D(0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, 0, 0.3, 0)
+target_position = Vector3(0, -5, 0)
