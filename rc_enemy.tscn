@@ -1,4 +1,6 @@
-[gd_scene load_steps=12 format=4 uid="uid://bdp1w74owtpow"]
+[gd_scene load_steps=13 format=4 uid="uid://bdp1w74owtpow"]
+
+[ext_resource type="Script" uid="uid://m7pn0mc5f2ep" path="res://rc_enemy.gd" id="1_sh3ng"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rjvf"]
 resource_name = "paintRed"
@@ -213,6 +215,7 @@ metadata/extras = {
 }
 
 [node name="rc_enemy" type="VehicleBody3D"]
+script = ExtResource("1_sh3ng")
 
 [node name="body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34997e-13, 0.1, 0)

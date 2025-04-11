@@ -1,7 +1,7 @@
 extends VehicleBody3D
 
 const MAX_STEER = 0.4
-const MAX_RPM = 1000
+const MAX_RPM = 700
 const MAX_TORQUE = 200
 const HORSE_POWER = 100
 
@@ -34,8 +34,10 @@ func check_and_right(delta):
 	if global_transform.basis.y.dot(Vector3.UP) < 0:
 		
 			var currot = self.rotation_degrees
-			currot.x = min(currot.x - delta * 10.0, currot.x + delta * 10.0)
-			currot.z = min(currot.z - delta * 10.0, currot.z + delta * 10.0)
+			#currot.x = min(currot.x - delta * 10.0, currot.x + delta * 10.0)
+			#currot.z = min(currot.z - delta * 10.0, currot.z + delta * 10.0)
+			currot.x = 0
+			currot.z = 0
 			self.rotation_degrees = currot
 
 
