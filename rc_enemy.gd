@@ -1,9 +1,9 @@
 extends VehicleBody3D
 
 const MAX_STEER = 0.4
-const MAX_RPM = 200
+const MAX_RPM = 300
 const MAX_TORQUE = 500
-const HORSE_POWER = 100
+const HORSE_POWER = 150
 const rev_power = -HORSE_POWER*2
 const stuck_time = 0.5
 
@@ -16,8 +16,21 @@ var is_stuck = false
 @onready var r = $rright
 @onready var l = $rleft
 
+
+
 func calc_engine(accel, rpm):
 	return accel * MAX_TORQUE * (1- rpm/MAX_RPM)
+	
+
+func _ready() -> void:
+	var mat : StandardMaterial3D = $body.mesh.surface_get_material(0)
+	var old_hsv = mat.albedo_color
+	var new_mat = StandardMaterial3D.new()
+	new_mat.albedo_color = Color.from_hsv(randf(), old_hsv.s, randf())
+	var new_mesh = $body.mesh.duplicate()
+	new_mesh.surface_set_material(0, new_mat)
+	$body.mesh = new_mesh
+	
 
 func check_and_right():
 	if global_transform.basis.y.dot(Vector3.UP) < 0:
