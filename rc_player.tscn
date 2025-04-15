@@ -218,7 +218,7 @@ metadata/extras = {
 font_size = 32
 
 [node name="rc_player" type="VehicleBody3D"]
-gravity_scale = 2.025
+gravity_scale = 4.0
 script = ExtResource("1_nqw02")
 
 [node name="body" type="MeshInstance3D" parent="."]

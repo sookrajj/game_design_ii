@@ -1,7 +1,7 @@
 extends VehicleBody3D
 
 const MAX_STEER = 0.4
-const MAX_RPM = 300
+const MAX_RPM = 500
 const MAX_TORQUE = 500
 const HORSE_POWER = 150
 const rev_power = -HORSE_POWER*2
@@ -65,8 +65,7 @@ func _physics_process(delta: float) -> void:
 	var accel = HORSE_POWER
 	if is_ray_colliding(f):
 		var dist =  f.get_collision_point().distance_to(global_transform.origin)
-		accel *= max(0.1, dist /10.0)
-		print("happened")
+		accel *= max(-0.1, -dist /10.0)
 	if is_ray_colliding(fr) or is_ray_colliding(r):
 		tarsteer += MAX_STEER
 	if is_ray_colliding(fl) or is_ray_colliding(l):
@@ -75,7 +74,9 @@ func _physics_process(delta: float) -> void:
 	
 	tarsteer = clamp(tarsteer, -MAX_STEER, MAX_STEER)
 	if is_stuck:
-		accel = rev_power
+		if (accel >= 0) :
+			accel = tarsteer
+		
 		steering = -sign(tarsteer) * MAX_STEER
 	else:
 		steering = tarsteer

@@ -1,9 +1,9 @@
 extends VehicleBody3D
 
 const MAX_STEER = 0.4
-const MAX_RPM = 700
-const MAX_TORQUE = 200
-const HORSE_POWER = 100
+const MAX_RPM = 1000
+const MAX_TORQUE = 100
+const HORSE_POWER = 150
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -42,4 +42,5 @@ func check_and_right(delta):
 
 
 func _on_death_plane_body_entered(body: Node3D) -> void:
-	get_tree().reload_current_scene()
+	if body == self:
+		get_tree().reload_current_scene()
