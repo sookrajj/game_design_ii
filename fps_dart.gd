@@ -2,7 +2,7 @@ extends RigidBody3D
 
 var dmg = 5;
 var crit = 2 * dmg;
-var speed = 50;
+var speed = 100;
 var drop = 0.001;
 var grav = ProjectSettings.get_setting("physics/3d/default_gravity") * drop;
 var spawn: Vector3;

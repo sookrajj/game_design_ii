@@ -5,6 +5,9 @@ const MAX_RPM = 1000
 const MAX_TORQUE = 100
 const HORSE_POWER = 150
 
+var idle = preload("res://Assets/Sounds/loop_0.wav") 
+var moving = preload("res://Assets/Sounds/car-interior-2.mp3")
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
@@ -24,7 +27,20 @@ func _physics_process(delta: float) -> void:
 	$centerMass.transform = $centerMass.transform.interpolate_with(transform, delta * 5.0)
 	$centerMass/Camera3D.look_at(global_position.lerp(global_position + linear_velocity, delta * 5.0))
 	
-	
+	if accel > 0:
+		var max_dB = 110
+		var dB = clamp(max_dB * abs($backLeft.engine_force/MAX_RPM), -10, max_dB)
+		$AudioStreamPlayer3D.volume_db = dB
+		if $AudioStreamPlayer3D.stream == idle:
+			$AudioStreamPlayer3D.stream = moving
+			$AudioStreamPlayer3D.play()  # change the stream to the vroom sound and play
+		elif not $AudioStreamPlayer3D.is_playing():
+			$AudioStreamPlayer3D.play()
+	else:
+		$AudioStreamPlayer3D.volume_db = 10  # default
+		$AudioStreamPlayer3D.stream = idle
+		$AudioStreamPlayer3D.play()
+	# change the stream to the idle sound and play
 	
 	check_and_right(delta)
 	
@@ -38,6 +54,7 @@ func check_and_right(delta):
 			#currot.z = min(currot.z - delta * 10.0, currot.z + delta * 10.0)
 			currot.x = 0
 			currot.z = 0
+			self.rotation = Vector3(0,0,0)
 			self.rotation_degrees = currot
 
 
