@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy8evu4o1o3nh"]
+[gd_scene load_steps=10 format=3 uid="uid://cy8evu4o1o3nh"]
 
 [ext_resource type="MeshLibrary" uid="uid://jgvj0mnakwei" path="res://Assets/Meshes/rc_tiles_1.tres" id="1_orelr"]
 [ext_resource type="PackedScene" uid="uid://du43mjoa7t4gb" path="res://rc_player.tscn" id="2_w7q12"]
 [ext_resource type="PackedScene" uid="uid://bdp1w74owtpow" path="res://rc_enemy.tscn" id="3_rjgen"]
+[ext_resource type="PackedScene" uid="uid://de6fun4c7bm6w" path="res://rc_checkpoint.tscn" id="4_hy7tj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7q12"]
 sky_top_color = Color(0.396571, 0.432506, 0.634793, 1)
@@ -69,5 +70,19 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46.155
 
 [node name="rc_enemy5" parent="." instance=ExtResource("3_rjgen")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.3894, 1.19209e-06, 24.5772)
+
+[node name="rc_checkpoint" parent="." instance=ExtResource("4_hy7tj")]
+cp_index = 3
+
+[node name="rc_checkpoint2" parent="." instance=ExtResource("4_hy7tj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -112.468, 48.1849, 278.854)
+
+[node name="rc_checkpoint3" parent="." instance=ExtResource("4_hy7tj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 51.7286, -3.58644, 434.302)
+cp_index = 1
+
+[node name="rc_checkpoint4" parent="." instance=ExtResource("4_hy7tj")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 51.7286, 79.9196, 340.334)
+cp_index = 2
 
 [connection signal="body_entered" from="deathPlane" to="rc_player" method="_on_death_plane_body_entered"]

@@ -1,12 +1,28 @@
 extends VehicleBody3D
 
 const MAX_STEER = 0.4
-const MAX_RPM = 1000
+const MAX_RPM = 800
 const MAX_TORQUE = 100
 const HORSE_POWER = 150
 
+var laps = 1
+var checkpoints = [false, false, false, false]
+
 var idle = preload("res://Assets/Sounds/loop_0.wav") 
 var moving = preload("res://Assets/Sounds/car-interior-2.mp3")
+
+func reset_checkpoints():
+	checkpoints = [false, false, false, false]
+
+func do_lap():
+	laps += 1
+	reset_checkpoints() 
+	if laps > 3:
+		await get_tree().create_timer(0.25).timeout
+		OS.alert("You Win!")
+	else :
+		$Laps.text = "Lap %d/3" % laps
+	pass
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -52,9 +68,9 @@ func check_and_right(delta):
 			var currot = self.rotation_degrees
 			#currot.x = min(currot.x - delta * 10.0, currot.x + delta * 10.0)
 			#currot.z = min(currot.z - delta * 10.0, currot.z + delta * 10.0)
-			currot.x = 0
-			currot.z = 0
-			self.rotation = Vector3(0,0,0)
+			currot.x = - currot.x / 2
+			currot.z = -currot.z / 2
+			self.rotation = Vector3(0, 0, 0)
 			self.rotation_degrees = currot
 
 
